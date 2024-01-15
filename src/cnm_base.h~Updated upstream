@@ -1,0 +1,313 @@
+ /* 
+ * Copyright EPFL 2023
+ * Rafael Medina Morillas
+ * 
+ * Riselda Kodra
+ * 
+ * Defines for configuring the design.
+ *
+ */
+
+#ifndef DEFS_H
+#define DEFS_H
+
+#include <map>
+#include <stdlib.h>
+#include <string>
+#include "systemc.h"
+
+#ifdef __SYNTHESIS__
+#include <ac_std_float.h>
+#include <ac_sc.h>
+#else
+#include "half.hpp"
+using half_float::half;
+#endif
+
+#define MIXED_SIM 0		// 0 if SystemC-only simulation, 1 if mixed SystemC + RTL
+
+#define CLK_PERIOD 3333
+#define RESOLUTION SC_PS
+
+// Address mapping constants
+#define CHANNEL_BITS    4
+#define RANK_BITS       0
+#define BG_BITS         2
+#define BANK_BITS       2
+#define ROW_BITS        14
+#define COL_BITS        5
+#define GLOBAL_OFFSET   6
+// RoBaBgRaCoCh mapping
+#define CH_END          GLOBAL_OFFSET
+#define CH_STA          GLOBAL_OFFSET + CHANNEL_BITS - 1
+#define CO_END          GLOBAL_OFFSET + CHANNEL_BITS
+#define CO_STA          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS - 1
+#define RA_END          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS
+#define RA_STA          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS - 1
+#define BG_END          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS
+#define BG_STA          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS + BG_BITS - 1
+#define BA_END          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS + BG_BITS
+#define BA_STA          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS + BG_BITS + BANK_BITS - 1
+#define RO_END          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS + BG_BITS + BANK_BITS
+#define RO_STA          GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS + BG_BITS + BANK_BITS + ROW_BITS - 1
+#define ADDR_TOTAL_BITS GLOBAL_OFFSET + CHANNEL_BITS + COL_BITS + RANK_BITS + BG_BITS + BANK_BITS + ROW_BITS
+
+// Data type
+#define INT_TYPE        // 1 if Integer data type, 0 otherwise
+#define HALF_FLOAT  1   // 1 if Half Precision Floating Point data type, 0 otherwise
+
+/*
+Data Formats for All Data Types:
+=========Not Synthesis=========
+half16                 =>   half
+integer data types     =>   sc_int<WORD_BITS>
+brain float 16         =>   only synthesis simulation
+floating point 32      =>   float
+floating point 64      =>   double
+===========Synthesis===========
+half16                 =>   ac_ieee_float16
+integer data types     => intX_t X = number of bits
+brain float 16         => ac:: bfloat16
+floating point 32  => ac_ieee_float32
+floating point 64  => ac_ieee_float64
+*/
+
+// Template of selecting the data type
+#if !(HALF_FLOAT)
+	#ifndef __SYNTHESIS__
+		#define WORD_BITS 32
+        typedef uint32_t rfBin_t;
+		#if INT_TYPE
+			typedef sc_int<WORD_BITS> cnm_t;
+		#else
+			typedef float cnm_t; 
+			typedef union   
+			{
+				cnm_t       data;
+				uint32_t     bin;       //binary representation of the data, defined as uintX_t where X is the number of bits
+			} cnm_union;
+		#endif
+	#else
+		typedef ac_ieee_fp32		cnm_synth;
+		#define WORD_BITS   int(sizeof(cnm_synth) * 8)
+	#endif
+#else
+    #ifndef __SYNTHESIS__
+		#define WORD_BITS 16
+		typedef half cnm_t; 
+	#else
+		typedef ac_ieee_float16		cnm_synth;
+		#define WORD_BITS   int(sizeof(cnm_synth) * 8)
+	#endif
+#endif
+
+
+
+
+// Sizing constants
+#define CORES_PER_PCH   1
+#define SIMD_WIDTH		(256 / WORD_BITS)	// Compatible with HBM interface
+#define CRF_ENTRIES     32
+#define SRF_A_ENTRIES   8
+#define SRF_M_ENTRIES   8
+#define GRF_ENTRIES     8
+#define ADD_STAGES      1
+#define MULT_STAGES     1
+#define RF_SEL_BITS     ROW_BITS-1
+#define RF_ADDR_BITS    COL_BITS
+#define AAM_ADDR_BITS   3
+#define INSTR_BITS      32
+//#define WORD_BITS       16
+#define GRF_WIDTH       (WORD_BITS*SIMD_WIDTH)
+#define DQ_BITS         64
+#define DQ_CLK          (GRF_WIDTH/DQ_BITS)
+#define INSTR_CLK       (INSTR_BITS/DQ_BITS)
+#ifndef __SYNTHESIS__
+#define VAR_DQ_CLK      (DQ_CLK > 1)    // True if more than one clk is needed to write the GRFs
+#define DQ_CLK_GT_2     (DQ_CLK > 2)
+#define DQ_CLK_GT_4     (DQ_CLK > 4)
+#define DQ_CLK_GT_8     (DQ_CLK > 8)
+#else
+#define VAR_DQ_CLK      1   // True if more than one clk is needed to write the GRFs
+#define DQ_CLK_GT_2     0
+#define DQ_CLK_GT_4     0
+#define DQ_CLK_GT_8     0
+#endif
+
+#if DQ_BITS == 16
+typedef uint16_t dq_type;
+#elif DQ_BITS == 32
+typedef uint32_t dq_type;
+#elif DQ_BITS == 64
+typedef uint64_t dq_type;
+#endif
+
+// If not enough column bits to address CRF, using also bank bits
+#define CRF_BANK_ADDR   ((1 << COL_BITS) < CRF_ENTRIES)
+
+// Instructions format
+#define OPCODE_STA  31
+#define OPCODE_END  28
+#define IMM0_STA    18
+#define IMM0_END    11
+#define IMM1_STA    10
+#define IMM1_END    0
+#define DST_STA     27
+#define DST_END     25
+#define SRC0_STA    24
+#define SRC0_END    22
+#define SRC1_STA    21
+#define SRC1_END    19
+#define SRC2_STA    18
+#define SRC2_END    16
+#define RELU_BIT    15
+#define AAM_BIT     15
+#define DST_N_STA   14
+#define DST_N_END   10
+#define SRC0_N_STA  9
+#define SRC0_N_END  5
+#define SRC1_N_STA  4
+#define SRC1_N_END  0
+
+// OPCODES operation identifiers
+enum OPCODE_VALUES {
+    OP_NOP = 0,
+    OP_JUMP = 1,
+    OP_EXIT = 2,
+    OP_MOV = 4,
+    OP_FILL = 5,
+    OP_ADD = 8,
+    OP_MUL = 9,
+    OP_MAD = 10,
+    OP_MAC = 11
+};
+
+const std::map<uint8_t, std::string> OPCODE_STRING = {
+    { OP_NOP, "OP_NOP" },
+    { OP_JUMP, "OP_JUMP" },
+    { OP_EXIT, "OP_EXIT" },
+    { OP_ADD, "OP_ADD" },
+    { OP_MUL, "OP_MUL" },
+    { OP_MAD, "OP_MAD" },
+    { OP_MAC, "OP_MAC" },
+    { OP_MOV, "OP_MOV" },
+    { OP_FILL, "OP_FILL" },
+};
+
+// OPCODES storage identifiers
+enum OPC_STORAGE {
+    OPC_GRF_A = 0,
+    OPC_GRF_B = 1,
+    OPC_SRF_M = 2,
+    OPC_SRF_A = 3,
+    OPC_EVEN_BANK = 4,
+    OPC_ODD_BANK = 5
+};
+
+const std::map<uint8_t, std::string> OPC_STORAGE_STRING = {
+    { OPC_GRF_A, "GRF_A" },
+    { OPC_GRF_B, "GRF_B" },
+    { OPC_SRF_M, "SRF_M" },
+    { OPC_SRF_A, "SRF_A" },
+    { OPC_EVEN_BANK, "EVEN_BANK" },
+    { OPC_ODD_BANK, "ODD_BANK" },
+};
+
+// MUX select signals
+enum MUX_STORAGE {
+    MUX_EXT = 0,
+    MUX_FPU = 1,
+    MUX_GRF_A = 2,
+    MUX_GRF_B = 3,
+    MUX_SRF = 4,
+    MUX_EVEN_BANK = 5,
+    MUX_ODD_BANK = 6
+};
+
+const std::map<uint8_t, std::string> MUX_STORAGE_STRING = {
+    { MUX_EXT, "MUX_EXT" },
+    { MUX_FPU, "MUX_FPU" },
+    { MUX_GRF_A, "GRF_A" },
+    { MUX_GRF_B, "GRF_B" },
+    { MUX_SRF, "SRF" },
+    { MUX_EVEN_BANK, "EVEN_BANK" },
+    { MUX_ODD_BANK, "ODD_BANK" },
+};
+
+enum MUL1_SEL {
+    M1_GRF_A1 = 0,
+    M1_GRF_A2 = 1,
+    M1_GRF_B1 = 2,
+    M1_GRF_B2 = 3,
+    M1_EVEN_BANK = 4,
+    M1_ODD_BANK = 5
+};
+
+const std::map<uint8_t, std::string> MUL1_SEL_STRING = {
+    { M1_GRF_A1, "GRF_A1" },
+    { M1_GRF_A2, "GRF_A2" },
+    { M1_GRF_B1, "GRF_B1" },
+    { M1_GRF_B2, "GRF_B2" },
+    { M1_EVEN_BANK, "EVEN_BANK" },
+    { M1_ODD_BANK, "ODD_BANK" },
+};
+
+enum MUL2_SEL {
+    M2_SRF = 0,
+    M2_GRF_A1 = 1,
+    M2_GRF_A2 = 2,
+    M2_GRF_B1 = 3,
+    M2_GRF_B2 = 4,
+    M2_EVEN_BANK = 5,
+    M2_ODD_BANK = 6
+};
+
+const std::map<uint8_t, std::string> MUL2_SEL_STRING = {
+    { M2_SRF, "SRF" },
+    { M2_GRF_A1, "GRF_A1" },
+    { M2_GRF_A2, "GRF_A2" },
+    { M2_GRF_B1, "GRF_B1" },
+    { M2_GRF_B2, "GRF_B2" },
+    { M2_EVEN_BANK, "EVEN_BANK" },
+    { M2_ODD_BANK, "ODD_BANK" },
+};
+
+enum ADD_SEL {
+    A_MULT_OUT = 0,
+    A_SRF = 1,
+    A_GRF_A1 = 2,
+    A_GRF_A2 = 3,
+    A_GRF_B1 = 4,
+    A_GRF_B2 = 5,
+    A_EVEN_BANK = 6,
+    A_ODD_BANK = 7
+};
+
+const std::map<uint8_t, std::string> ADD_SEL_STRING = {
+    { A_MULT_OUT, "MULT_OUT" },
+    { A_SRF, "SRF" },
+    { A_GRF_A1, "GRF_A1" },
+    { A_GRF_A2, "GRF_A2" },
+    { A_GRF_B1, "GRF_B1" },
+    { A_GRF_B2, "GRF_B2" },
+    { A_EVEN_BANK, "EVEN_BANK" },
+    { A_ODD_BANK, "ODD_BANK" }
+};
+
+enum RF_SEL {
+    RF_CRF = 0,
+    RF_SRF_M = 1,
+    RF_SRF_A = 2,
+    RF_GRF_A = 3,
+    RF_GRF_B = 4
+};
+
+const std::map<uint8_t, std::string> RF_SEL_STRING = {
+    { RF_CRF, "RF_CRF" },
+    { RF_SRF_M, "RF_SRF_M" },
+    { RF_SRF_A, "RF_SRF_A" },
+    { RF_GRF_A, "RF_GRF_A" },
+    { RF_GRF_B, "RF_GRF_B" },
+};
+
+#endif

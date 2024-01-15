@@ -1,0 +1,54 @@
+[*]
+[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
+[*] Wed Aug 25 10:33:45 2021
+[*]
+[dumpfile] "/home/rafam/eclipse-workspace/pim-cores/waveforms/fpu_wave.vcd"
+[dumpfile_mtime] "Wed Aug 25 10:26:21 2021"
+[dumpfile_size] 5151
+[savefile] "/home/rafam/eclipse-workspace/pim-cores/waveforms/fpu_debug.gtkw"
+[timestart] 0
+[size] 1855 951
+[pos] -856 -1
+*-13.797156 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 225
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 283
+@28
+SystemC.rst
+SystemC.compute_en
+@22
+SystemC.srfm_in[15:0]
+SystemC.srfa_in[15:0]
+SystemC.grfa_in1(0)[15:0]
+SystemC.grfa_in2(0)[15:0]
+SystemC.grfb_in1(0)[15:0]
+SystemC.grfb_in2(0)[15:0]
+@2022
+^2 /home/rafam/eclipse-workspace/pim-cores/waveforms/mul1_sel.alias
+SystemC.mult_in1_sel[7:0]
+^3 /home/rafam/eclipse-workspace/pim-cores/waveforms/mul2_sel.alias
+SystemC.mult_in2_sel[7:0]
+@22
+SystemC.mpipeline(0)[15:0]
+SystemC.mpipeline(1)[15:0]
+SystemC.mpipeline(2)[15:0]
+SystemC.mpipeline(3)[15:0]
+SystemC.mpipeline(4)[15:0]
+@2022
+^1 /home/rafam/eclipse-workspace/pim-cores/waveforms/add_sel.alias
+SystemC.add_in1_sel[7:0]
+^1 /home/rafam/eclipse-workspace/pim-cores/waveforms/add_sel.alias
+SystemC.add_in2_sel[7:0]
+@22
+SystemC.apipeline(0)[15:0]
+SystemC.apipeline(1)[15:0]
+SystemC.apipeline(2)[15:0]
+SystemC.apipeline(3)[15:0]
+SystemC.apipeline(4)[15:0]
+@28
+SystemC.out_sel
+@22
+SystemC.output(0)[15:0]
+[pattern_trace] 1
+[pattern_trace] 0

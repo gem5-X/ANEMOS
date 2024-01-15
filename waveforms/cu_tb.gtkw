@@ -1,0 +1,146 @@
+[*]
+[*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
+[*] Tue Nov  9 11:23:18 2021
+[*]
+[dumpfile] "/home/rafam/eclipse-workspace/pim-cores/cu_wave.vcd"
+[dumpfile_mtime] "Tue Nov  9 11:17:39 2021"
+[dumpfile_size] 46750
+[savefile] "/home/rafam/eclipse-workspace/pim-cores/cu_tb.gtkw"
+[timestart] 0
+[size] 1855 1056
+[pos] -1 -1
+*-18.823448 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 225
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 320
+@28
+SystemC.rst
+SystemC.clk
+SystemC.AB_mode
+SystemC.pim_mode
+SystemC.ACT
+SystemC.RD
+SystemC.WR
+SystemC.rf_access
+SystemC.decode_en
+@4022
+^>1 /home/rafam/eclipse-workspace/pim-cores/instruction_translate.exe
+SystemC.instr[31:0]
+@22
+SystemC.bank_addr[3:0]
+@28
+SystemC.row_addr[2:0]
+@22
+SystemC.col_addr[4:0]
+SystemC.DQ[63:0]
+SystemC.data_out[255:0]
+@200
+-PC control
+@28
+SystemC.count_en
+SystemC.pc_rst
+SystemC.jump_en
+@22
+SystemC.jump_num[7:0]
+@200
+-CRF
+@28
+SystemC.crf_wr_en
+@22
+SystemC.crf_wr_addr[31:0]
+@200
+-SRF
+@28
+SystemC.srf_rd_a_nm
+@22
+SystemC.srf_rd_addr[31:0]
+@28
+SystemC.srf_wr_en
+SystemC.srf_wr_a_nm
+@2022
+^1 /home/rafam/eclipse-workspace/pim-cores/storage.alias
+SystemC.srf_wr_from[7:0]
+@22
+SystemC.srf_wr_addr[31:0]
+@200
+-GRF_A
+@22
+SystemC.grfa_rd_addr1[31:0]
+SystemC.grfa_rd_addr2[31:0]
+@28
+SystemC.grfa_wr_en
+SystemC.grfa_relu_en
+@2022
+^1 /home/rafam/eclipse-workspace/pim-cores/storage.alias
+SystemC.grfa_wr_from[7:0]
+@22
+SystemC.grfa_wr_addr[31:0]
+@200
+-GRF_B
+@22
+SystemC.grfb_rd_addr1[31:0]
+SystemC.grfb_rd_addr2[31:0]
+@28
+SystemC.grfb_wr_en
+SystemC.grfb_relu_en
+@c02022
+^1 /home/rafam/eclipse-workspace/pim-cores/storage.alias
+SystemC.grfb_wr_from[7:0]
+@28
+(0)SystemC.grfb_wr_from[7:0]
+(1)SystemC.grfb_wr_from[7:0]
+(2)SystemC.grfb_wr_from[7:0]
+(3)SystemC.grfb_wr_from[7:0]
+(4)SystemC.grfb_wr_from[7:0]
+(5)SystemC.grfb_wr_from[7:0]
+(6)SystemC.grfb_wr_from[7:0]
+(7)SystemC.grfb_wr_from[7:0]
+@1401200
+-group_end
+@22
+SystemC.grfb_wr_addr[31:0]
+@200
+-FPU
+@28
+SystemC.fpu_mult_en
+@2022
+^3 /home/rafam/eclipse-workspace/pim-cores/mul1_sel.alias
+SystemC.fpu_mult_in1_sel[7:0]
+@c02023
+^4 /home/rafam/eclipse-workspace/pim-cores/mul2_sel.alias
+SystemC.fpu_mult_in2_sel[7:0]
+@28
+(0)SystemC.fpu_mult_in2_sel[7:0]
+(1)SystemC.fpu_mult_in2_sel[7:0]
+(2)SystemC.fpu_mult_in2_sel[7:0]
+(3)SystemC.fpu_mult_in2_sel[7:0]
+(4)SystemC.fpu_mult_in2_sel[7:0]
+(5)SystemC.fpu_mult_in2_sel[7:0]
+(6)SystemC.fpu_mult_in2_sel[7:0]
+(7)SystemC.fpu_mult_in2_sel[7:0]
+@1401201
+-group_end
+@28
+SystemC.fpu_add_en
+@2022
+^2 /home/rafam/eclipse-workspace/pim-cores/add_sel.alias
+SystemC.fpu_add_in1_sel[7:0]
+@c02022
+^2 /home/rafam/eclipse-workspace/pim-cores/add_sel.alias
+SystemC.fpu_add_in2_sel[7:0]
+@28
+(0)SystemC.fpu_add_in2_sel[7:0]
+(1)SystemC.fpu_add_in2_sel[7:0]
+(2)SystemC.fpu_add_in2_sel[7:0]
+(3)SystemC.fpu_add_in2_sel[7:0]
+(4)SystemC.fpu_add_in2_sel[7:0]
+(5)SystemC.fpu_add_in2_sel[7:0]
+(6)SystemC.fpu_add_in2_sel[7:0]
+(7)SystemC.fpu_add_in2_sel[7:0]
+@1401200
+-group_end
+@28
+SystemC.fpu_out_sel
+[pattern_trace] 1
+[pattern_trace] 0

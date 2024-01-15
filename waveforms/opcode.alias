@@ -1,0 +1,12 @@
+#
+# GTKWave aliases for the instruction OPCODES
+#
+00 OP_NOP
+01 OP_JUMP
+02 OP_EXIT
+04 OP_MOV
+05 OP_FILL
+08 OP_ADD
+09 OP_MUL
+10 OP_MAD
+11 OP_MAC

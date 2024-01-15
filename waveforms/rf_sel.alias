@@ -1,0 +1,8 @@
+#
+# GTKWave aliases for the multiplexers of the register files external rd/wr
+#
+0 CRF
+1 SRF_M
+2 SRF_A
+3 GRF_A
+4 GRF_B

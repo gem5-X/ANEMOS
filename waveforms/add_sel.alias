@@ -1,0 +1,11 @@
+#
+# GTKWave aliases for the input multiplexers of the FPU adder
+#
+00 MULT_OUT
+01 SRF
+02 GRF_A1
+03 GRF_A2
+04 GRF_B1
+05 GRF_B2
+06 EVEN_BANK
+07 ODD_BANK

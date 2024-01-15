@@ -1,0 +1,10 @@
+#
+# GTKWave aliases for the second input multiplexer of the FPU multiplier
+#
+00 SRF
+01 GRF_A1
+02 GRF_A2
+03 GRF_B1
+04 GRF_B2
+05 EVEN_BAN
+06 ODD_BANKK

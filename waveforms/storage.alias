@@ -1,0 +1,10 @@
+#
+# GTKWave aliases for the input multiplexers of the register files and banks
+#
+00 EXTERNAL
+01 FPU_OUT
+02 GRF_A
+03 GRF_B
+04 SRF
+05 EVEN_BANK
+06 ODD_BANK

@@ -9,7 +9,7 @@
 #include <array>
 #include <random>
 
-#include "../src/defs.h"
+#include "../../src/defs.h"
 
 using namespace std;
 

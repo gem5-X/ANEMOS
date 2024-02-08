@@ -2,7 +2,7 @@
 #define SRC_DATATYPES_H_
 
 #include <stdint.h>
-#include "../src/defs.h"
+#include "../../src/defs.h"
 #include "half.hpp"
 using half_float::half;
 

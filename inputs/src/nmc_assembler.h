@@ -14,8 +14,8 @@
 
 #include "half.hpp"
 #include "datatypes.h"
-#include "../src/defs.h"
-#include "../src/opcodes.h"
+#include "../../src/defs.h"
+#include "../../src/opcodes.h"
 
 #if WORD_BITS != 64
     #define MASK ((1ul << WORD_BITS) - 1)

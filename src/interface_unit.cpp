@@ -75,7 +75,7 @@ void interface_unit::comb_method() {
             if (rlsb <= RF_GRF_B) {
 #if DQ_BITS == 16
                 if (rlsb == RF_CRF && WR && !RD) {
-                    crf_wr_cnt_nxt = grf_wr_cnt_reg + 1;
+                    crf_wr_cnt_nxt = crf_wr_cnt_reg + 1;
                     crf_ser2par_nxt = DQ;
                 } else
 #endif
@@ -101,7 +101,6 @@ void interface_unit::comb_method() {
 #endif
             if (grf_wr_cnt_reg < DQ_CLK - 1) {
                 grf_wr_cnt_nxt = grf_wr_cnt_reg + 1;
-                grf_ser2par_nxt = grf_ser2par_aux;
                 switch (grf_wr_cnt_reg) {	// SystemC synthesis-friendly
 #if DQ_CLK_GT_2
                     case 1:     grf_ser2par_aux.range(DQ_BITS * 2 - 1, DQ_BITS * 1) = DQ;   break;
@@ -125,6 +124,7 @@ void interface_unit::comb_method() {
 #endif
                     default:    grf_wr_cnt_nxt = 0;                                         break;
                 }
+                grf_ser2par_nxt = grf_ser2par_aux;
             } else {
                 grf_wr_cnt_nxt = 0;
                 data_out_aux.range(DQ_BITS * DQ_CLK - 1, DQ_BITS * (DQ_CLK-1)) = DQ;

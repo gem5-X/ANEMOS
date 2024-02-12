@@ -20,16 +20,16 @@ cd ../inputs
 sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h
 ./compile_all.sh
 make -C $HOME/Documents/ramulator-AB/ -j4
-./map_kernel ewarwC32R8S16GDDR5V256n256 EWARW 256 256
-./map_kernel dpC32R8S16GDDR5V256n256 DP 256 256
-./map_kernel mvmC32R8S16GDDR532x32 MMS 1 32 32
-./map_kernel mvmC32R8S16GDDR564x64 MMS 1 64 64
-./map_kernel mvmC32R8S16GDDR5128x128 MMS 1 128 128
-./map_kernel mvmC32R8S16GDDR5256x256 MMS 1 256 256
-./map_kernel mvmC32R8S16GDDR5512x512 MMS 1 512 512
-./map_kernel mvmC32R8S16GDDR51024x1024 MMS 1 1024 1024
-./map_kernel mmsC32R8S16GDDR5m128n128q128 MMS 128 128 128
-./map_kernel ccwwrC32R8S16GDDR5i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
+bin/map_kernel ewarwC32R8S16GDDR5V256n256 EWARW 256 256
+bin/map_kernel dpC32R8S16GDDR5V256n256 DP 256 256
+bin/map_kernel mvmC32R8S16GDDR532x32 MMS 1 32 32
+bin/map_kernel mvmC32R8S16GDDR564x64 MMS 1 64 64
+bin/map_kernel mvmC32R8S16GDDR5128x128 MMS 1 128 128
+bin/map_kernel mvmC32R8S16GDDR5256x256 MMS 1 256 256
+bin/map_kernel mvmC32R8S16GDDR5512x512 MMS 1 512 512
+bin/map_kernel mvmC32R8S16GDDR51024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC32R8S16GDDR5m128n128q128 MMS 128 128 128
+bin/map_kernel ccwwrC32R8S16GDDR5i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
 echo "EWARW V = 256 n = 256" >> ../scripts/kernels_gddr5.times
 ./assembly2sc.sh ewarwC32R8S16GDDR5V256n256 >> ../scripts/kernels_gddr5.times
 echo "DP V = 256 n = 256" >> ../scripts/kernels_gddr5.times
@@ -62,13 +62,13 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_gddr5.times
 # sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<13, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h
 # ./compile_all.sh
 # make -C $HOME/Documents/ramulator-AB/ -j4
-# ./map_kernel ewarwC32R8S8GDDR5V256n256 EWARW 256 256
-# ./map_kernel dpC32R8S8GDDR5V256n256 DP 256 256
-# ./map_kernel mvmC32R8S8GDDR564x64 MMS 1 64 64
-# ./map_kernel mvmC32R8S8GDDR5128x128 MMS 1 128 128
-# ./map_kernel mvmC32R8S8GDDR51024x1024 MMS 1 1024 1024
-# ./map_kernel mmsC32R8S8GDDR5m128n128q128 MMS 128 128 128
-# ./map_kernel ccwwrC32R8S8GDDR5i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
+# bin/map_kernel ewarwC32R8S8GDDR5V256n256 EWARW 256 256
+# bin/map_kernel dpC32R8S8GDDR5V256n256 DP 256 256
+# bin/map_kernel mvmC32R8S8GDDR564x64 MMS 1 64 64
+# bin/map_kernel mvmC32R8S8GDDR5128x128 MMS 1 128 128
+# bin/map_kernel mvmC32R8S8GDDR51024x1024 MMS 1 1024 1024
+# bin/map_kernel mmsC32R8S8GDDR5m128n128q128 MMS 128 128 128
+# bin/map_kernel ccwwrC32R8S8GDDR5i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
 # echo "EWARW V = 256 n = 256" >> ../scripts/kernels_gddr5.times
 # ./assembly2sc.sh ewarwC32R8S8GDDR5V256n256 >> ../scripts/kernels_gddr5.times
 # echo "DP V = 256 n = 256" >> ../scripts/kernels_gddr5.times
@@ -95,13 +95,13 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_gddr5.times
 # sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<13, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<12, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h
 # ./compile_all.sh
 # make -C $HOME/Documents/ramulator-AB/ -j4
-# ./map_kernel ewarwC32R8S16GDDR5V256n256 EWARW 256 256
-# ./map_kernel dpC32R8S16GDDR5V256n256 DP 256 256
-# ./map_kernel mvmC32R8S16GDDR564x64 MMS 1 64 64
-# ./map_kernel mvmC32R8S16GDDR5128x128 MMS 1 128 128
-# ./map_kernel mvmC32R8S16GDDR51024x1024 MMS 1 1024 1024
-# ./map_kernel mmsC32R8S16GDDR5m128n128q128 MMS 128 128 128
-# ./map_kernel ccwwrC32R8S16GDDR5i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
+# bin/map_kernel ewarwC32R8S16GDDR5V256n256 EWARW 256 256
+# bin/map_kernel dpC32R8S16GDDR5V256n256 DP 256 256
+# bin/map_kernel mvmC32R8S16GDDR564x64 MMS 1 64 64
+# bin/map_kernel mvmC32R8S16GDDR5128x128 MMS 1 128 128
+# bin/map_kernel mvmC32R8S16GDDR51024x1024 MMS 1 1024 1024
+# bin/map_kernel mmsC32R8S16GDDR5m128n128q128 MMS 128 128 128
+# bin/map_kernel ccwwrC32R8S16GDDR5i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
 # echo "EWARW V = 256 n = 256" >> ../scripts/kernels_gddr5.times
 # ./assembly2sc.sh ewarwC32R8S16GDDR5V256n256 >> ../scripts/kernels_gddr5.times
 # echo "DP V = 256 n = 256" >> ../scripts/kernels_gddr5.times
@@ -128,11 +128,11 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_gddr5.times
 # # sed -i "s/{4<<10, 128, {0, 0, 4, 4, 1<<13, 1<<(6+3)}},/{4<<10, 128, {0, 0, 4, 4, 1<<13, 1<<(5+3)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h
 # # ./compile_all.sh
 # # make -C $HOME/Documents/ramulator-AB/ -j4
-# # ./map_kernel ewarwC32R8S64V256n256 EWARW 256 256
-# # ./map_kernel dpC32R8S64V256n256 DP 256 256
-# # ./map_kernel mvmC32R8S641024x1024 MMS 1 1024 1024
-# # ./map_kernel mmsC32R8S64m128n128q128 MMS 128 128 128
-# # ./map_kernel ccwwrC32R8S64i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
+# # bin/map_kernel ewarwC32R8S64V256n256 EWARW 256 256
+# # bin/map_kernel dpC32R8S64V256n256 DP 256 256
+# # bin/map_kernel mvmC32R8S641024x1024 MMS 1 1024 1024
+# # bin/map_kernel mmsC32R8S64m128n128q128 MMS 128 128 128
+# # bin/map_kernel ccwwrC32R8S64i24x24x32o20x20x32k5 CCWWR 32 24 24 5 1 32 20 20
 # # echo "EWARW V = 256 n = 256" >> ../scripts/kernels_gddr5.times
 # # ./assembly2sc.sh ewarwC32R8S64V256n256 >> ../scripts/kernels_gddr5.times
 # # echo "DP V = 256 n = 256" >> ../scripts/kernels_gddr5.times

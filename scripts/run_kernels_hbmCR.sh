@@ -18,12 +18,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC16R4S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC16R4S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC16R4S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC16R4S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC16R4S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC16R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC16R4S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC16R4S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC16R4S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC16R4S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC16R4S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC16R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC16R4S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -48,12 +48,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC16R8S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC16R8S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC16R8S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC16R8S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC16R8S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC16R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC16R8S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC16R8S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC16R8S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC16R8S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC16R8S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC16R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC16R8S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -78,12 +78,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC16R16S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC16R16S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC16R16S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC16R16S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC16R16S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC16R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC16R16S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC16R16S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC16R16S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC16R16S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC16R16S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC16R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC16R16S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -108,12 +108,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC16R32S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC16R32S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC16R32S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC16R32S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC16R32S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC16R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC16R32S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC16R32S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC16R32S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC16R32S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC16R32S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC16R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC16R32S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -138,12 +138,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC32R4S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC32R4S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC32R4S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC32R4S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC32R4S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC32R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC32R4S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC32R4S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC32R4S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC32R4S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC32R4S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC32R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC32R4S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -168,12 +168,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC32R8S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC32R8S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC32R8S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC32R8S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC32R8S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC32R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC32R8S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC32R8S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC32R8S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC32R8S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC32R8S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC32R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC32R8S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -198,12 +198,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC32R16S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC32R16S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC32R16S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC32R16S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC32R16S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC32R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC32R16S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC32R16S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC32R16S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC32R16S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC32R16S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC32R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC32R16S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -228,12 +228,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC32R32S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC32R32S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC32R32S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC32R32S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC32R32S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC32R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC32R32S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC32R32S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC32R32S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC32R32S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC32R32S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC32R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC32R32S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -260,12 +260,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC64R4S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC64R4S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC64R4S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC64R4S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC64R4S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC64R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC64R4S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC64R4S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC64R4S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC64R4S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC64R4S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC64R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC64R4S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -290,12 +290,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC64R8S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC64R8S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC64R8S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC64R8S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC64R8S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC64R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC64R8S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC64R8S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC64R8S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC64R8S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC64R8S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC64R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC64R8S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -320,12 +320,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC64R16S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC64R16S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC64R16S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC64R16S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC64R16S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC64R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC64R16S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC64R16S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC64R16S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC64R16S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC64R16S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC64R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC64R16S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -350,12 +350,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC64R32S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC64R32S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC64R32S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC64R32S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC64R32S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC64R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC64R32S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC64R32S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC64R32S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC64R32S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC64R32S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC64R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC64R32S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -382,12 +382,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC128R4S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC128R4S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC128R4S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC128R4S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC128R4S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC128R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC128R4S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC128R4S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC128R4S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC128R4S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC128R4S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC128R4S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC128R4S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -412,12 +412,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC128R8S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC128R8S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC128R8S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC128R8S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC128R8S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC128R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC128R8S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC128R8S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC128R8S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC128R8S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC128R8S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC128R8S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC128R8S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -442,12 +442,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-./map_kernel ewarwC128R16S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC128R16S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC128R16S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC128R16S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC128R16S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC128R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+bin/map_kernel ewarwC128R16S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC128R16S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC128R16S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC128R16S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC128R16S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC128R16S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 ./assembly2sc.sh ewarwC128R16S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 echo "DP V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
@@ -472,12 +472,12 @@ cd ../Debug
 make all
 cd ../inputs
 ./compile_all.sh
-# ./map_kernel ewarwC128R32S16HBM1pchV128n128 EWARW 128 128
-./map_kernel dpC128R32S16HBM1pchV128n128 DP 128 128
-./map_kernel mvmC128R32S16HBM1pch180x180 MMS 1 180 180
-./map_kernel mvmC128R32S16HBM1pch1024x1024 MMS 1 1024 1024
-./map_kernel mmsC128R32S16HBM1pchm60n60q60 MMS 60 60 60
-./map_kernel ccwwrC128R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
+# bin/map_kernel ewarwC128R32S16HBM1pchV128n128 EWARW 128 128
+bin/map_kernel dpC128R32S16HBM1pchV128n128 DP 128 128
+bin/map_kernel mvmC128R32S16HBM1pch180x180 MMS 1 180 180
+bin/map_kernel mvmC128R32S16HBM1pch1024x1024 MMS 1 1024 1024
+bin/map_kernel mmsC128R32S16HBM1pchm60n60q60 MMS 60 60 60
+bin/map_kernel ccwwrC128R32S16HBM1pchi11x11x34o9x9x16k3 CCWWR 34 11 11 3 1 16 9 9
 echo "EWARW V = 128 n = 128" >> ../scripts/kernels_hbmCR.times
 # ./assembly2sc.sh ewarwC128R32S16HBM1pchV128n128 >> ../scripts/kernels_hbmCR.times
 cd ..

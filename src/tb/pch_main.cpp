@@ -88,10 +88,12 @@ int sc_main(int argc, char *argv[]) {
 
     sc_report_handler::set_actions(SC_ID_VECTOR_CONTAINS_LOGIC_VALUE_,
             SC_DO_NOTHING);
+    sc_report_handler::set_actions (SC_WARNING, SC_DO_NOTHING);
 
     sc_trace_file *tracefile;
-    tracefile = sc_create_vcd_trace_file("waveforms/pch_wave");
-
+#if !(GEM5)
+    tracefile = sc_create_vcd_trace_file("pch_wave");
+#endif
     sc_trace(tracefile, clk, "clk");
     sc_trace(tracefile, rst, "rst");
     sc_trace(tracefile, RD, "RD");
@@ -104,49 +106,52 @@ int sc_main(int argc, char *argv[]) {
     sc_trace(tracefile, row_addr, "row_addr");
     sc_trace(tracefile, col_addr, "col_addr");
     sc_trace(tracefile, DQ, "DQ");
-    sc_trace(tracefile, dut.imc_cores[0]->data_out, "data_out");
-    sc_trace(tracefile, dut.imc_cores[0]->ext2crf, "ext2crf");
-    sc_trace(tracefile, dut.imc_cores[0]->ext2srf, "ext2srf");
-    sc_trace(tracefile, dut.imc_cores[0]->ext2grf[1], "ext2grf");
-    sc_trace(tracefile, dut.imc_cores[0]->PC, "PC");
-    sc_trace(tracefile, dut.imc_cores[0]->instr, "instr");
-    sc_trace(tracefile, even_buses[0], "even_bus");
-    sc_trace(tracefile, odd_buses[0], "odd_bus");
-    sc_trace(tracefile, dut.imc_cores[0]->even2grfa[1], "even2grfa");
-    sc_trace(tracefile, dut.imc_cores[0]->odd2grfb[1], "odd2grfb");
-    sc_trace(tracefile, dut.imc_cores[0]->crf_wr_en, "crf_wr_en");
-    sc_trace(tracefile, dut.imc_cores[0]->crf_wr_addr, "crf_wr_addr");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_rd_addr, "srf_rd_addr");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_wr_addr, "srf_wr_addr");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_rd_a_nm, "srf_rd_a_nm");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_wr_a_nm, "srf_wr_a_nm");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_wr_en, "srf_wr_en");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_wr_from, "srf_wr_from");
-    sc_trace(tracefile, dut.imc_cores[0]->srf_out, "srf_out");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_rd_addr1, "grfa_rd_addr1");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_rd_addr2, "grfa_rd_addr2");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_wr_addr, "grfa_wr_addr");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_wr_en, "grfa_wr_en");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_relu_en, "grfa_relu_en");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_wr_from, "grfa_wr_from");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_out1[1], "grfa_out1");
-    sc_trace(tracefile, dut.imc_cores[0]->grfa_out2[1], "grfa_out2");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_rd_addr1, "grfb_rd_addr1");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_rd_addr2, "grfb_rd_addr2");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_wr_addr, "grfb_wr_addr");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_wr_en, "grfb_wr_en");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_relu_en, "grfb_relu_en");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_wr_from, "grfb_wr_from");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_out1[1], "grfb_out1");
-    sc_trace(tracefile, dut.imc_cores[0]->grfb_out2[1], "grfb_out2");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_mult_en, "fpu_mult_en");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_add_en, "fpu_add_en");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_out_sel, "fpu_out_sel");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_mult_in1_sel, "fpu_mult_in1_sel");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_mult_in2_sel, "fpu_mult_in2_sel");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_add_in1_sel, "fpu_add_in1_sel");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_add_in2_sel, "fpu_add_in2_sel");
-    sc_trace(tracefile, dut.imc_cores[0]->fpu_out[1], "fpu_out");
+    for (i = 0; i < CORES_PER_PCH; i++) {
+    sc_trace(tracefile, dut.imc_cores[i]->data_out, "data_out");
+    sc_trace(tracefile, dut.imc_cores[i]->ext2crf, "ext2crf");
+    sc_trace(tracefile, dut.imc_cores[i]->ext2srf, "ext2srf");
+    sc_trace(tracefile, dut.imc_cores[i]->ext2grf[0], "ext2grf");
+    sc_trace(tracefile, dut.imc_cores[i]->PC, "PC");
+    sc_trace(tracefile, dut.imc_cores[i]->instr, "instr");
+    sc_trace(tracefile, even_buses[i], "even_bus");
+    sc_trace(tracefile, odd_buses[i], "odd_bus");
+    sc_trace(tracefile, dut.imc_cores[i]->even2grfa[0], "even2grfa");
+    sc_trace(tracefile, dut.imc_cores[i]->odd2grfb[0], "odd2grfb");
+    sc_trace(tracefile, dut.imc_cores[i]->crf_wr_en, "crf_wr_en");
+    sc_trace(tracefile, dut.imc_cores[i]->crf_wr_addr, "crf_wr_addr");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_rd_addr, "srf_rd_addr");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_wr_addr, "srf_wr_addr");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_rd_a_nm, "srf_rd_a_nm");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_wr_a_nm, "srf_wr_a_nm");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_wr_en, "srf_wr_en");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_wr_from, "srf_wr_from");
+    sc_trace(tracefile, dut.imc_cores[i]->srf_out, "srf_out");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_rd_addr1, "grfa_rd_addr1");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_rd_addr2, "grfa_rd_addr2");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_wr_addr, "grfa_wr_addr");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_wr_en, "grfa_wr_en");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_relu_en, "grfa_relu_en");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_wr_from, "grfa_wr_from");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_out1[0], "grfa_out1");
+    sc_trace(tracefile, dut.imc_cores[i]->grfa_out2[0], "grfa_out2");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_rd_addr1, "grfb_rd_addr1");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_rd_addr2, "grfb_rd_addr2");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_wr_addr, "grfb_wr_addr");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_wr_en, "grfb_wr_en");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_relu_en, "grfb_relu_en");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_wr_from, "grfb_wr_from");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_out1[0], "grfb_out1");
+    sc_trace(tracefile, dut.imc_cores[i]->grfb_out2[0], "grfb_out2");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_mult_en, "fpu_mult_en");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_add_en, "fpu_add_en");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_out_sel, "fpu_out_sel");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_mult_in1_sel, "fpu_mult_in1_sel");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_mult_in2_sel, "fpu_mult_in2_sel");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_add_in1_sel, "fpu_add_in1_sel");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_add_in2_sel, "fpu_add_in2_sel");
+    sc_trace(tracefile, dut.imc_cores[i]->fpu_out[0], "fpu_out");
+    }
+
 
     sc_start();
 

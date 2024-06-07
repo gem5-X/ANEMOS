@@ -29,11 +29,15 @@ int main(int argc, const char *argv[])
     std::normal_distribution<float> dis(0, 65504/32768); 
 #else
 #if INT_TYPE
-    std::uniform_int_distribution<cnm_t> dis(-2147483648, 2147483648); //for int8 use (-1,1) to not overflow
+#if DATA_TYPE == 4
+    std::uniform_int_distribution<cnm_t> dis(-1, 1);
+#else
+    std::uniform_int_distribution<cnm_t> dis(-32768, 32767); //for int8 use (-1,1) to not overflow
+#endif  // DATA_TYPE == 4
 #else
     std::normal_distribution<cnm_t> dis(0, 65504/32768); 
-#endif
-#endif
+#endif  // INT_TYPE
+#endif  // HALF_FLOAT
 
     // Trial mapping of simple kernels
     int V,n;
@@ -120,6 +124,14 @@ int main(int argc, const char *argv[])
                 mapEWAdditionRowWiseCLim(assembly, dataFile, addrFile, op1, op2, V, n);
             else
                 mapEWAdditionRowWiseRLim(assembly, dataFile, addrFile, op1, op2, V, n);
+            // cout << "--------- RESULTS ----------" << endl;
+            // for (int i =0; i < V; i++){
+            //     for(int j =0; j < n; j++){
+            //         cout << op1[i][j] + op2[i][j] << "\t";
+            //         if (!((i+1)%SIMD_WIDTH))    cout << endl;
+            //     }
+            //     cout << endl;
+            // }
         break;
         case EWACW:
             if (CRF_ENTRIES < (6*GRF_ENTRIES + 3*(int(float(n)*ceil(float(V)/float(SIMD_WIDTH*CORES_PER_PCH))) % (2*GRF_ENTRIES)) + 2))

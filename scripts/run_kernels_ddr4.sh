@@ -9,7 +9,7 @@ sed -i "s/#define CLK_PERIOD 3333/#define CLK_PERIOD 2500/g" ../src/defs.h
 echo "" > ../scripts/kernels_ddr4.times
 echo "----------C = 32, R = 8, S = 4----------" >> ../scripts/kernels_ddr4.times
 sed -i "s/#define CORES_PER_PCH   1/#define CORES_PER_PCH   8/g" ../src/defs.h
-sed -i "s/#define SIMD_WIDTH		(256 \/ WORD_BITS)/#define SIMD_WIDTH		(64 \/ WORD_BITS)/g" ../src/defs.h
+sed -i "s/#define SIMD_WIDTH      (256 \/ WORD_BITS)/#define SIMD_WIDTH      (64 \/ WORD_BITS)/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        14/#define ROW_BITS        15/g" ../src/defs.h
 sed -i "s/#define COL_BITS        5/#define COL_BITS        7/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   6/#define GLOBAL_OFFSET   4/g" ../src/defs.h
@@ -21,6 +21,7 @@ sed -i "s/{4<<10,  8, {0, 0, 4, 4, 1<<15, 1<<10}},/{4<<10,  8, {0, 0, 4, 4, 1<<1
 make -C $HOME/Documents/ramulator-AB/ -j4
 bin/map_kernel ewarwC32R8S4DDR4V256n256 EWARW 256 256
 bin/map_kernel dpC32R8S4DDR4V256n256 DP 256 256
+bin/map_kernel mvmC32R8S4DDR416x16 MMS 1 16 16
 bin/map_kernel mvmC32R8S4DDR432x32 MMS 1 32 32
 bin/map_kernel mvmC32R8S4DDR464x64 MMS 1 64 64
 bin/map_kernel mvmC32R8S4DDR4128x128 MMS 1 128 128
@@ -33,6 +34,8 @@ echo "EWARW V = 256 n = 256" >> ../scripts/kernels_ddr4.times
 ./assembly2sc.sh ewarwC32R8S4DDR4V256n256 >> ../scripts/kernels_ddr4.times
 echo "DP V = 256 n = 256" >> ../scripts/kernels_ddr4.times
 ./assembly2sc.sh dpC32R8S4DDR4V256n256 >> ../scripts/kernels_ddr4.times
+echo "MVM 16x16" >> ../scripts/kernels_ddr4.times
+./assembly2sc.sh mvmC32R8S4DDR416x16 >> ../scripts/kernels_ddr4.times
 echo "MVM 32x32" >> ../scripts/kernels_ddr4.times
 ./assembly2sc.sh mvmC32R8S4DDR432x32 >> ../scripts/kernels_ddr4.times
 echo "MVM 64x64" >> ../scripts/kernels_ddr4.times
@@ -149,7 +152,7 @@ sed -i "s/#define CLK_PERIOD 2500/#define CLK_PERIOD 3333/g" ../src/defs.h
 
 # Back to initial state
 sed -i "s/#define CORES_PER_PCH   8/#define CORES_PER_PCH   1/g" ../src/defs.h
-sed -i "s/#define SIMD_WIDTH		(64 \/ WORD_BITS)/#define SIMD_WIDTH		(256 \/ WORD_BITS)/g" ../src/defs.h
+sed -i "s/#define SIMD_WIDTH      (64 \/ WORD_BITS)/#define SIMD_WIDTH      (256 \/ WORD_BITS)g" ../src/defs.h
 sed -i "s/#define COL_BITS        7/#define COL_BITS        5/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        15/#define ROW_BITS        14/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   4/#define GLOBAL_OFFSET   6/g" ../src/defs.h

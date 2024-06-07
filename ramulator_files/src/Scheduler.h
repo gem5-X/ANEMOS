@@ -52,6 +52,9 @@ Current Row Policies:
 #include "DDR4_AB.h"
 #include "LPDDR4_AB.h"
 #include "GDDR5_AB.h"
+#include "PCM_AB.h"
+#include "RRAM_AB.h"
+#include "STTRAM_AB.h"
 #include "Request.h"
 #include "Controller.h"
 #include <vector>
@@ -451,6 +454,15 @@ template <>
 void RowTable<GDDR5_AB>::update(typename GDDR5_AB::Command cmd, const vector<int>& addr_vec, long clk);
 
 template <>
+void RowTable<PCM_AB>::update(typename PCM_AB::Command cmd, const vector<int>& addr_vec, long clk);
+
+template <>
+void RowTable<RRAM_AB>::update(typename RRAM_AB::Command cmd, const vector<int>& addr_vec, long clk);
+
+template <>
+void RowTable<STTRAM_AB>::update(typename STTRAM_AB::Command cmd, const vector<int>& addr_vec, long clk);
+
+template <>
 int RowTable<HBM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row);
 
 template <>
@@ -466,6 +478,15 @@ template <>
 int RowTable<GDDR5_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row);
 
 template <>
+int RowTable<PCM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row);
+
+template <>
+int RowTable<RRAM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row);
+
+template <>
+int RowTable<STTRAM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row);
+
+template <>
 int RowTable<HBM_AB>::get_open_row(const vector<int>& addr_vec);
 
 template <>
@@ -479,6 +500,15 @@ int RowTable<LPDDR4_AB>::get_open_row(const vector<int>& addr_vec);
 
 template <>
 int RowTable<GDDR5_AB>::get_open_row(const vector<int>& addr_vec);
+
+template <>
+int RowTable<PCM_AB>::get_open_row(const vector<int>& addr_vec);
+
+template <>
+int RowTable<RRAM_AB>::get_open_row(const vector<int>& addr_vec);
+
+template <>
+int RowTable<STTRAM_AB>::get_open_row(const vector<int>& addr_vec);
 
 } /*namespace ramulator*/
 

@@ -12,7 +12,7 @@ using half_float::half;
 #define INT_TYPE    0       // 1 if Integer data type, 0 otherwise
 #endif
 
-#if (DATA_TYPE == 0)
+#if (DATA_TYPE == 0 || DATA_TYPE == 3) // TODO until bfloat is implemented
 #define HALF_FLOAT  1       // 1 if Half Precision Floating Point data type, 0 otherwise
 #else
 #define HALF_FLOAT  0

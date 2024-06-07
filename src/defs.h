@@ -10,7 +10,8 @@
 #ifndef SRC_DEFS_H_
 #define SRC_DEFS_H_
 
-#define MIXED_SIM 0     // 0 if SystemC-only simulation, 1 if mixed SystemC + RTL
+#define MIXED_SIM 0		// 0 if SystemC-only simulation, 1 if mixed SystemC + RTL
+#define GEM5	0
 
 #define CLK_PERIOD 3333
 #define RESOLUTION SC_PS

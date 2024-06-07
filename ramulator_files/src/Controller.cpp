@@ -7,6 +7,9 @@
 #include "DDR4_AB.h"
 #include "LPDDR4_AB.h"
 #include "GDDR5_AB.h"
+#include "PCM_AB.h"
+#include "RRAM_AB.h"
+#include "STTRAM_AB.h"
 
 using namespace ramulator;
 
@@ -199,12 +202,30 @@ bool Controller<LPDDR4_AB>::enqueue(Request& req)
     return enqueue_AB(req);
 }
 
-
 template <>
 bool Controller<GDDR5_AB>::enqueue(Request& req)
 {
     return enqueue_AB(req);
 }
+
+template <>
+bool Controller<PCM_AB>::enqueue(Request& req)
+{
+    return enqueue_AB(req);
+}
+
+template <>
+bool Controller<RRAM_AB>::enqueue(Request& req)
+{
+    return enqueue_AB(req);
+}
+
+template <>
+bool Controller<STTRAM_AB>::enqueue(Request& req)
+{
+    return enqueue_AB(req);
+}
+
 
 template <>
 void Controller<HBM_AB>::tick(){
@@ -228,6 +249,21 @@ void Controller<LPDDR4_AB>::tick(){
 
 template <>
 void Controller<GDDR5_AB>::tick(){
+    tick_AB();
+}
+
+template <>
+void Controller<PCM_AB>::tick(){
+    tick_AB();
+}
+
+template <>
+void Controller<RRAM_AB>::tick(){
+    tick_AB();
+}
+
+template <>
+void Controller<STTRAM_AB>::tick(){
     tick_AB();
 }
 
@@ -264,6 +300,25 @@ void RowTable<GDDR5_AB>::update(typename GDDR5_AB::Command cmd, const vector<int
 }
 
 template <>
+void RowTable<PCM_AB>::update(typename PCM_AB::Command cmd, const vector<int>& addr_vec, long clk)
+{
+    update_AB(cmd, addr_vec, clk);
+}
+
+template <>
+void RowTable<RRAM_AB>::update(typename RRAM_AB::Command cmd, const vector<int>& addr_vec, long clk)
+{
+    update_AB(cmd, addr_vec, clk);
+}
+
+template <>
+void RowTable<STTRAM_AB>::update(typename STTRAM_AB::Command cmd, const vector<int>& addr_vec, long clk)
+{
+    update_AB(cmd, addr_vec, clk);
+}
+
+
+template <>
 int RowTable<HBM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row)
 {
     return get_hits_AB(addr_vec, to_opened_row);
@@ -294,6 +349,25 @@ int RowTable<GDDR5_AB>::get_hits(const vector<int>& addr_vec, const bool to_open
 }
 
 template <>
+int RowTable<PCM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row)
+{
+    return get_hits_AB(addr_vec, to_opened_row);
+}
+
+template <>
+int RowTable<RRAM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row)
+{
+    return get_hits_AB(addr_vec, to_opened_row);
+}
+
+template <>
+int RowTable<STTRAM_AB>::get_hits(const vector<int>& addr_vec, const bool to_opened_row)
+{
+    return get_hits_AB(addr_vec, to_opened_row);
+}
+
+
+template <>
 int RowTable<HBM_AB>::get_open_row(const vector<int>& addr_vec)
 {
     return get_open_row_AB(addr_vec);
@@ -319,6 +393,24 @@ int RowTable<LPDDR4_AB>::get_open_row(const vector<int>& addr_vec)
 
 template <>
 int RowTable<GDDR5_AB>::get_open_row(const vector<int>& addr_vec)
+{
+    return get_open_row_AB(addr_vec);
+}
+
+template <>
+int RowTable<PCM_AB>::get_open_row(const vector<int>& addr_vec)
+{
+    return get_open_row_AB(addr_vec);
+}
+
+template <>
+int RowTable<RRAM_AB>::get_open_row(const vector<int>& addr_vec)
+{
+    return get_open_row_AB(addr_vec);
+}
+
+template <>
+int RowTable<STTRAM_AB>::get_open_row(const vector<int>& addr_vec)
 {
     return get_open_row_AB(addr_vec);
 }

@@ -146,10 +146,18 @@ int main(int argc, const char *argv[])
                                     rfBin.push_back(dataBin);
                                 }
 #else 
+#if DATA_TYPE == 4
+                                int int8Aux;
+                                while(distream >> int8Aux){
+                                    dataVal.data = int8Aux;
+                                    rfBin.push_back(dataVal.bin);
+                                }
+#else
                                 while(distream >> dataVal.data){   
                                     rfBin.push_back(dataVal.bin);
                                 }
-#endif
+#endif  // DATA_TYPE == 4
+#endif  // HALF_FLOAT
                             // Read from assembly file
                             } else {
 #if (HALF_FLOAT)
@@ -732,7 +740,7 @@ uint64_t build_addr(vector<uint64_t> addr_vec, bool rf_write)
     uint64_t offset = global_offset; // Don't know really why right now, maybe to address groups of 128
 
     if (rf_write) {
-        addr_vec[int(Level::Row)] |= (1 << (addr_bits[int(Level::Row)]-1));
+        addr_vec[int(Level::Row)] |= (1 << (addr_bits[int(Level::Row)]-1)); //Ndryshova kete RK -1 => -3
     }
 
     for (int i = 0; i < int(Level::MAX); i++) {
@@ -963,12 +971,20 @@ bool getDataFromFile (ifstream &dataFile, deque<rfBin_t> &rfBin, nmcInst *currIn
         dataHalf = dataFloat;
         dataBin = dataHalf.bin_word();
         rfBin.push_back(dataBin);
-        }
+    }
+#else
+#if DATA_TYPE == 4
+    int int8Aux;
+    while(distream >> int8Aux){
+        dataVal.data = int8Aux;
+        rfBin.push_back(dataVal.bin);
+    }
 #else
     while (distream >> dataVal.data) {
         rfBin.push_back(dataVal.bin);
     }
-#endif
+#endif  // DATA_TYPE == 4
+#endif  // HALF_FLOAT
 
     while (!rfBin.empty()) {
         //Check if number of data is acceptable

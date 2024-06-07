@@ -462,55 +462,55 @@ void instr_decoder::comb_method() {
     // Signal width adaptation in the interface unit
     if (rf_access->read()) {
         switch (rf_sel) {
-        case RF_CRF:
-//				if (rf_wr_nrd) {
-            crf_wr_en->write(true);
+            case RF_CRF:
+    //				if (rf_wr_nrd) {
+                crf_wr_en->write(true);
 #if CRF_BANK_ADDR
-            crf_wr_addr->write(crf_addr.to_uint());
+                crf_wr_addr->write(crf_addr.to_uint());
 #else
-            crf_wr_addr->write(rf_addr.to_uint());
+                crf_wr_addr->write(rf_addr.to_uint());
 #endif
 //				}
             break;
-        case RF_SRF_M:
-//				if (!rf_wr_nrd) {
-//					srf_rd_addr_comb = rf_addr.to_uint();
-//					srf_rd_a_nm_comb = false;
-//				} else {
-            srf_wr_en_comb = true;
-            srf_wr_addr_comb = rf_addr.to_uint();
-            srf_wr_a_nm_comb = false;
-            srf_wr_from_comb = MUX_EXT;
-//				}
+            case RF_SRF_M:
+    //				if (!rf_wr_nrd) {
+    //					srf_rd_addr_comb = rf_addr.to_uint();
+    //					srf_rd_a_nm_comb = false;
+    //				} else {
+                srf_wr_en_comb = true;
+                srf_wr_addr_comb = rf_addr.to_uint();
+                srf_wr_a_nm_comb = false;
+                srf_wr_from_comb = MUX_EXT;
+    //				}
             break;
-        case RF_SRF_A:
-//				if (!rf_wr_nrd) {
-//					srf_rd_addr_comb = rf_addr.to_uint();
-//					srf_rd_a_nm_comb = true;
-//				} else {
-            srf_wr_en_comb = true;
-            srf_wr_addr_comb = rf_addr.to_uint();
-            srf_wr_a_nm_comb = true;
-            srf_wr_from_comb = MUX_EXT;
-//				}
+            case RF_SRF_A:
+    //				if (!rf_wr_nrd) {
+    //					srf_rd_addr_comb = rf_addr.to_uint();
+    //					srf_rd_a_nm_comb = true;
+    //				} else {
+                srf_wr_en_comb = true;
+                srf_wr_addr_comb = rf_addr.to_uint();
+                srf_wr_a_nm_comb = true;
+                srf_wr_from_comb = MUX_EXT;
+    //				}
             break;
-        case RF_GRF_A:
-//				if (!rf_wr_nrd) {
-//					grfa_rd_addr1_comb = rf_addr.to_uint();
-//				} else {
-            grfa_wr_en_comb = true;
-            grfa_wr_addr_comb = rf_addr.to_uint();
-            grfa_wr_from_comb = MUX_EXT;
-//				}
+            case RF_GRF_A:
+    //				if (!rf_wr_nrd) {
+    //					grfa_rd_addr1_comb = rf_addr.to_uint();
+    //				} else {
+                grfa_wr_en_comb = true;
+                grfa_wr_addr_comb = rf_addr.to_uint();
+                grfa_wr_from_comb = MUX_EXT;
+    //				}
             break;
-        case RF_GRF_B:
-//				if (!rf_wr_nrd) {
-//					grfb_rd_addr1_comb = rf_addr.to_uint();
-//				} else {
-            grfb_wr_en_comb = true;
-            grfb_wr_addr_comb = rf_addr.to_uint();
-            grfb_wr_from_comb = MUX_EXT;
-//				}
+            case RF_GRF_B:
+    //				if (!rf_wr_nrd) {
+    //					grfb_rd_addr1_comb = rf_addr.to_uint();
+    //				} else {
+                grfb_wr_en_comb = true;
+                grfb_wr_addr_comb = rf_addr.to_uint();
+                grfb_wr_from_comb = MUX_EXT;
+    //				}
             break;
         }
     }
@@ -523,763 +523,763 @@ void instr_decoder::comb_method() {
         // Decode the instruction and generate the control signals
         switch (OPCODE) {
 
-        // IMM0 cycles NOP
-        case OP_NOP:
-            nop_cnt_nxt = IMM0 - 1;	// The FETCH already counts as a NOP cycle
+            // IMM0 cycles NOP
+            case OP_NOP:
+                nop_cnt_nxt = IMM0 - 1;	// The FETCH already counts as a NOP cycle
             break;
 
             // JUMP with zero-cycles execution stage and only one register for number of loops
-        case OP_JUMP:
-            if (!jmp_act_reg) {			// First sight of this jump
-                count_en->write(false);
-                jmp_act_nxt = true;
-                jmp_cnt_nxt = IMM1 - 1;
-                jump_en->write(true);
-                jump_num->write(IMM0);
-            } else if (jmp_cnt_reg) {	// Still more jumps to make
-                count_en->write(false);
-                jmp_act_nxt = true;
-                jmp_cnt_nxt = jmp_cnt_reg - 1;
-                jump_en->write(true);
-                jump_num->write(IMM0);
-            } else {					// Last jump made
-                jmp_act_nxt = false;
-            }
+            case OP_JUMP:
+                if (!jmp_act_reg) {			// First sight of this jump
+                    count_en->write(false);
+                    jmp_act_nxt = true;
+                    jmp_cnt_nxt = IMM1 - 1;
+                    jump_en->write(true);
+                    jump_num->write(IMM0);
+                } else if (jmp_cnt_reg) {	// Still more jumps to make
+                    count_en->write(false);
+                    jmp_act_nxt = true;
+                    jmp_cnt_nxt = jmp_cnt_reg - 1;
+                    jump_en->write(true);
+                    jump_num->write(IMM0);
+                } else {					// Last jump made
+                    jmp_act_nxt = false;
+                }
             break;
 
             // Reset PC and control variables
-        case OP_EXIT:
-            // Only reset PC, we allow for further instructions if triggered by DRAM commands
-            pc_rst->write(true);
+            case OP_EXIT:
+                // Only reset PC, we allow for further instructions if triggered by DRAM commands
+                pc_rst->write(true);
             break;
 
             // DST(DST_N) <- SRC0(SRC0_N), with optional ReLU
-        case OP_MOV:
-            if (SRC0 == OPC_EVEN_BANK) {	// Loading from even bank
-                rd_from_mux = MUX_EVEN_BANK;
-                switch (DST) {	// Only even_bank to GRF_A allowed
-                case OPC_GRF_A:
-                    grfa_wr_en_fromLoad = true;
-                    grfa_wr_from_fromLoad = rd_from_mux;
-                    grfa_wr_addr_fromLoad = DST_N.to_uint();
-                    if (RELU)
-                        grfa_relu_en_nxt = true;
-                    break;
-                default:
-                    break;
+            case OP_MOV:
+                if (SRC0 == OPC_EVEN_BANK) {	// Loading from even bank
+                    rd_from_mux = MUX_EVEN_BANK;
+                    switch (DST) {	// Only even_bank to GRF_A allowed
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromLoad = true;
+                            grfa_wr_from_fromLoad = rd_from_mux;
+                            grfa_wr_addr_fromLoad = DST_N.to_uint();
+                            if (RELU)
+                                grfa_relu_en_nxt = true;
+                        break;
+                        default:
+                        break;
+                    }
+                } else if (SRC0 == OPC_ODD_BANK) {
+                    rd_from_mux = MUX_ODD_BANK;
+                    switch (DST) {	// Only odd_bank to GRF_B allowed
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromLoad = true;
+                            grfb_wr_from_fromLoad = rd_from_mux;
+                            grfb_wr_addr_fromLoad = DST_N.to_uint();
+                            if (RELU)
+                                grfb_relu_en_nxt = true;
+                        break;
+                        default:
+                        break;
+                    }
+                } else {	// Reading from RFs
+                    switch (SRC0) {
+                        case OPC_GRF_A:
+                            grfa_rd_addr1_comb = SRC0_N.to_uint();
+                            rd_from_mux = MUX_GRF_A;
+                        break;
+                        case OPC_GRF_B:
+                            grfb_rd_addr1_comb = SRC0_N.to_uint();
+                            rd_from_mux = MUX_GRF_B;
+                        break;
+                        case OPC_SRF_M:
+                            srf_rd_addr_comb = SRC0_N.to_uint();
+                            srf_rd_a_nm_comb = false;
+                            rd_from_mux = MUX_SRF;
+                        break;
+                        case OPC_SRF_A:
+                            srf_rd_addr_comb = SRC0_N.to_uint();
+                            srf_rd_a_nm_comb = true;
+                            rd_from_mux = MUX_SRF;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (DST) {	// Store in intended RF/BANK
+                        case OPC_GRF_A:
+                            grfa_wr_en_comb = true;
+                            grfa_wr_from_comb = rd_from_mux;
+                            grfa_wr_addr_comb = DST_N.to_uint();
+                            if (RELU)
+                                grfa_relu_en_comb = true;
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_comb = true;
+                            grfb_wr_from_comb = rd_from_mux;
+                            grfb_wr_addr_comb = DST_N.to_uint();
+                            if (RELU)
+                                grfb_relu_en_comb = true;
+                        break;
+                        case OPC_SRF_M:
+                            srf_wr_en_comb = true;
+                            srf_wr_from_comb = rd_from_mux;
+                            srf_wr_addr_comb = DST_N.to_uint();
+                            srf_wr_a_nm_comb = false;
+                        break;
+                        case OPC_SRF_A:
+                            srf_wr_en_comb = true;
+                            srf_wr_from_comb = rd_from_mux;
+                            srf_wr_addr_comb = DST_N.to_uint();
+                            srf_wr_a_nm_comb = true;
+                        break;
+                        case OPC_EVEN_BANK:
+                            if (rd_from_mux == MUX_GRF_A)	// Only GRF_A to even_bank
+                                even_out_en->write(true);
+                        break;
+                        case OPC_ODD_BANK:
+                            if (rd_from_mux == MUX_GRF_B)	// Only GRF_B to odd_bank
+                                odd_out_en->write(true);
+                        break;
+                        default:
+                        break;
+                    }
                 }
-            } else if (SRC0 == OPC_ODD_BANK) {
-                rd_from_mux = MUX_ODD_BANK;
-                switch (DST) {	// Only odd_bank to GRF_B allowed
-                case OPC_GRF_B:
-                    grfb_wr_en_fromLoad = true;
-                    grfb_wr_from_fromLoad = rd_from_mux;
-                    grfb_wr_addr_fromLoad = DST_N.to_uint();
-                    if (RELU)
-                        grfb_relu_en_nxt = true;
-                    break;
-                default:
-                    break;
-                }
-            } else {	// Reading from RFs
-                switch (SRC0) {
-                case OPC_GRF_A:
-                    grfa_rd_addr1_comb = SRC0_N.to_uint();
-                    rd_from_mux = MUX_GRF_A;
-                    break;
-                case OPC_GRF_B:
-                    grfb_rd_addr1_comb = SRC0_N.to_uint();
-                    rd_from_mux = MUX_GRF_B;
-                    break;
-                case OPC_SRF_M:
-                    srf_rd_addr_comb = SRC0_N.to_uint();
-                    srf_rd_a_nm_comb = false;
-                    rd_from_mux = MUX_SRF;
-                    break;
-                case OPC_SRF_A:
-                    srf_rd_addr_comb = SRC0_N.to_uint();
-                    srf_rd_a_nm_comb = true;
-                    rd_from_mux = MUX_SRF;
-                    break;
-                default:
-                    break;
-                }
-                switch (DST) {	// Store in intended RF/BANK
-                case OPC_GRF_A:
-                    grfa_wr_en_comb = true;
-                    grfa_wr_from_comb = rd_from_mux;
-                    grfa_wr_addr_comb = DST_N.to_uint();
-                    if (RELU)
-                        grfa_relu_en_comb = true;
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_comb = true;
-                    grfb_wr_from_comb = rd_from_mux;
-                    grfb_wr_addr_comb = DST_N.to_uint();
-                    if (RELU)
-                        grfb_relu_en_comb = true;
-                    break;
-                case OPC_SRF_M:
-                    srf_wr_en_comb = true;
-                    srf_wr_from_comb = rd_from_mux;
-                    srf_wr_addr_comb = DST_N.to_uint();
-                    srf_wr_a_nm_comb = false;
-                    break;
-                case OPC_SRF_A:
-                    srf_wr_en_comb = true;
-                    srf_wr_from_comb = rd_from_mux;
-                    srf_wr_addr_comb = DST_N.to_uint();
-                    srf_wr_a_nm_comb = true;
-                    break;
-                case OPC_EVEN_BANK:
-                    if (rd_from_mux == MUX_GRF_A)	// Only GRF_A to even_bank
-                        even_out_en->write(true);
-                    break;
-                case OPC_ODD_BANK:
-                    if (rd_from_mux == MUX_GRF_B)	// Only GRF_B to odd_bank
-                        odd_out_en->write(true);
-                    break;
-                default:
-                    break;
-                }
-            }
             break;
 
             // DST(DST_N) <- SRC0(SRC0_N) ?
-        case OP_FILL:
-            // TODO left unimplemented, then we'll see
+            case OP_FILL:
+                // TODO left unimplemented, then we'll see
             break;
 
             // DST(DST_N) = SRC0(SRC0_N) + SRC1(SRC1_N)
-        case OP_ADD:
-            if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
-                    || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
-                switch (SRC0) {	// Select first input to adder
-                case OPC_GRF_A:
-//							grfa_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
-                    grfa_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_add_in1_sel_toMoAAftLoad = A_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
-                    grfb_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_add_in1_sel_toMoAAftLoad = A_GRF_B1;
-                    break;
-                case OPC_SRF_A:
-//							srf_rd_addr_toMAWAftLoad = SRC0_N.to_uint();
-                    srf_rd_addr_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    srf_rd_a_nm_toMAWAftLoad = true;
-                    fpu_add_in1_sel_toMoAAftLoad = A_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_add_in1_sel_toMoAAftLoad = A_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_add_in1_sel_toMoAAftLoad = A_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to adder
-                case OPC_GRF_A:
-//							grfa_rd_addr2_nxt = SRC1_N.to_uint();
-                    grfa_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in2_sel_toMoAAftLoad = A_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_nxt = SRC1_N.to_uint();
-                    grfb_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in2_sel_toMoAAftLoad = A_GRF_B2;
-                    break;
-                case OPC_SRF_A:
-//							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
-                    srf_rd_addr_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_toMAWAftLoad = true;
-                    fpu_add_in2_sel_toMoAAftLoad = A_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_add_in2_sel_toMoAAftLoad = A_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_add_in2_sel_toMoAAftLoad = A_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
+            case OP_ADD:
+                if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
+                        || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
+                    switch (SRC0) {	// Select first input to adder
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
+                            grfa_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_add_in1_sel_toMoAAftLoad = A_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
+                            grfb_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_add_in1_sel_toMoAAftLoad = A_GRF_B1;
+                        break;
+                        case OPC_SRF_A:
+        //							srf_rd_addr_toMAWAftLoad = SRC0_N.to_uint();
+                            srf_rd_addr_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            srf_rd_a_nm_toMAWAftLoad = true;
+                            fpu_add_in1_sel_toMoAAftLoad = A_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_add_in1_sel_toMoAAftLoad = A_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_add_in1_sel_toMoAAftLoad = A_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to adder
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_nxt = SRC1_N.to_uint();
+                            grfa_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in2_sel_toMoAAftLoad = A_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_nxt = SRC1_N.to_uint();
+                            grfb_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in2_sel_toMoAAftLoad = A_GRF_B2;
+                        break;
+                        case OPC_SRF_A:
+        //							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
+                            srf_rd_addr_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_toMAWAftLoad = true;
+                            fpu_add_in2_sel_toMoAAftLoad = A_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_add_in2_sel_toMoAAftLoad = A_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_add_in2_sel_toMoAAftLoad = A_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
 
-                add_en_toMoAAftLoad = true;	// Enable addition for 5 cycles after next one
+                    add_en_toMoAAftLoad = true;	// Enable addition for 5 cycles after next one
 
-                switch (DST) {// Enable writing of addition result to destination
-                case OPC_GRF_A:
-                    grfa_wr_en_fromAddAftLoad = true;
-                    grfa_wr_from_fromAddAftLoad = MUX_FPU;
-//							grfa_wr_addr_fromAddAftLoad = DST_N.to_uint();
-                    grfa_wr_addr_fromAddAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_fromAddAftLoad = true;
-                    grfb_wr_from_fromAddAftLoad = MUX_FPU;
-//							grfb_wr_addr_fromAddAftLoad = DST_N.to_uint();
-                    grfb_wr_addr_fromAddAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                }
-            } else {	// Loading from RFs only
-                switch (SRC0) {	// Select first input to adder
-                case OPC_GRF_A:
-//							grfa_rd_addr1_comb = SRC0_N.to_uint();
-                    grfa_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_add_in1_sel_comb = A_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_comb = SRC0_N.to_uint();
-                    grfb_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_add_in1_sel_comb = A_GRF_B1;
-                    break;
-                case OPC_SRF_A:
-//							srf_rd_addr_comb = SRC0_N.to_uint();
-                    srf_rd_addr_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    srf_rd_a_nm_comb = true;
-                    fpu_add_in1_sel_comb = A_SRF;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to adder
-                case OPC_GRF_A:
-//							grfa_rd_addr2_comb = SRC1_N.to_uint();
-                    grfa_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in2_sel_comb = A_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_comb = SRC1_N.to_uint();
-                    grfb_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in2_sel_comb = A_GRF_B2;
-                    break;
-                case OPC_SRF_A:
-//							srf_rd_addr_comb = SRC1_N.to_uint();
-                    srf_rd_addr_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_comb = true;
-                    fpu_add_in2_sel_comb = A_SRF;
-                    break;
-                default:
-                    break;
-                }
+                    switch (DST) {// Enable writing of addition result to destination
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromAddAftLoad = true;
+                            grfa_wr_from_fromAddAftLoad = MUX_FPU;
+        //							grfa_wr_addr_fromAddAftLoad = DST_N.to_uint();
+                            grfa_wr_addr_fromAddAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromAddAftLoad = true;
+                            grfb_wr_from_fromAddAftLoad = MUX_FPU;
+        //							grfb_wr_addr_fromAddAftLoad = DST_N.to_uint();
+                            grfb_wr_addr_fromAddAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
+                } else {	// Loading from RFs only
+                    switch (SRC0) {	// Select first input to adder
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_comb = SRC0_N.to_uint();
+                            grfa_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_add_in1_sel_comb = A_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_comb = SRC0_N.to_uint();
+                            grfb_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_add_in1_sel_comb = A_GRF_B1;
+                        break;
+                        case OPC_SRF_A:
+        //							srf_rd_addr_comb = SRC0_N.to_uint();
+                            srf_rd_addr_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            srf_rd_a_nm_comb = true;
+                            fpu_add_in1_sel_comb = A_SRF;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to adder
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_comb = SRC1_N.to_uint();
+                            grfa_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in2_sel_comb = A_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_comb = SRC1_N.to_uint();
+                            grfb_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in2_sel_comb = A_GRF_B2;
+                        break;
+                        case OPC_SRF_A:
+        //							srf_rd_addr_comb = SRC1_N.to_uint();
+                            srf_rd_addr_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_comb = true;
+                            fpu_add_in2_sel_comb = A_SRF;
+                        break;
+                        default:
+                        break;
+                    }
 
-                add_en_toMoA = true; // Enable addition for the next 5 cycles
+                    add_en_toMoA = true; // Enable addition for the next 5 cycles
 
-                switch (DST) { // Enable writing of addition result to destination
-                case OPC_GRF_A:
-                    grfa_wr_en_fromAdd = true;
-                    grfa_wr_from_fromAdd = MUX_FPU;
-//							grfa_wr_addr_fromAdd = DST_N.to_uint();
-                    grfa_wr_addr_fromAdd =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_fromAdd = true;
-                    grfb_wr_from_fromAdd = MUX_FPU;
-//							grfb_wr_addr_fromAdd = DST_N.to_uint();
-                    grfb_wr_addr_fromAdd =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
+                    switch (DST) { // Enable writing of addition result to destination
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromAdd = true;
+                            grfa_wr_from_fromAdd = MUX_FPU;
+        //							grfa_wr_addr_fromAdd = DST_N.to_uint();
+                            grfa_wr_addr_fromAdd =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromAdd = true;
+                            grfb_wr_from_fromAdd = MUX_FPU;
+        //							grfb_wr_addr_fromAdd = DST_N.to_uint();
+                            grfb_wr_addr_fromAdd =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
                 }
-            }
             break;
 
             // DST(DST_N) = SRC0(SRC0_N) * SRC1(SRC1_N)
-        case OP_MUL:
-            if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
-                    || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
-                switch (SRC0) {	// Select first input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
-                    grfa_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_nxt = M1_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
-                    grfb_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_nxt = M1_GRF_B1;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_mult_in1_sel_nxt = M1_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_mult_in1_sel_nxt = M1_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr2_nxt = SRC1_N.to_uint();
-                    grfa_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_nxt = M2_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_nxt = SRC1_N.to_uint();
-                    grfb_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_nxt = M2_GRF_B2;
-                    break;
-                case OPC_SRF_M:
-//							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
-                    srf_rd_addr_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_toMAWAftLoad = false;
-                    fpu_mult_in2_sel_nxt = M2_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_mult_in2_sel_nxt = M2_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_mult_in2_sel_nxt = M2_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
+            case OP_MUL:
+                if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
+                        || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
+                    switch (SRC0) {	// Select first input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
+                            grfa_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_nxt = M1_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
+                            grfb_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_nxt = M1_GRF_B1;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_mult_in1_sel_nxt = M1_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_mult_in1_sel_nxt = M1_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_nxt = SRC1_N.to_uint();
+                            grfa_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_nxt = M2_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_nxt = SRC1_N.to_uint();
+                            grfb_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_nxt = M2_GRF_B2;
+                        break;
+                        case OPC_SRF_M:
+        //							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
+                            srf_rd_addr_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_toMAWAftLoad = false;
+                            fpu_mult_in2_sel_nxt = M2_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_mult_in2_sel_nxt = M2_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_mult_in2_sel_nxt = M2_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
 
-                mul_en_toMoAAftLoad = true; // Enable multiplication for 5 cycles after next one
-                fpu_out_sel_fromMulAftLoad = true; // Select multiplier output when necessary
+                    mul_en_toMoAAftLoad = true; // Enable multiplication for 5 cycles after next one
+                    fpu_out_sel_fromMulAftLoad = true; // Select multiplier output when necessary
 
-                switch (DST) { // Enable writing of multiplication result to destination
-                case OPC_GRF_A:
-                    grfa_wr_en_fromMulAftLoad = true;
-                    grfa_wr_from_fromMulAftLoad = MUX_FPU;
-//							grfa_wr_addr_fromMulAftLoad = DST_N.to_uint();
-                    grfa_wr_addr_fromMulAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_fromMulAftLoad = true;
-                    grfb_wr_from_fromMulAftLoad = MUX_FPU;
-//							grfb_wr_addr_fromMulAftLoad = DST_N.to_uint();
-                    grfb_wr_addr_fromMulAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                }
-            } else {	// Loading from RFs only
-                switch (SRC0) {	// Select first input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr1_comb = SRC0_N.to_uint();
-                    grfa_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_comb = M1_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_comb = SRC0_N.to_uint();
-                    grfb_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_comb = M1_GRF_B1;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr2_comb = SRC1_N.to_uint();
-                    grfa_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_comb = M2_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_comb = SRC1_N.to_uint();
-                    grfb_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_comb = M2_GRF_B2;
-                    break;
-                case OPC_SRF_M:
-//							srf_rd_addr_comb = SRC1_N.to_uint();
-                    srf_rd_addr_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_comb = false;
-                    fpu_mult_in2_sel_comb = M2_SRF;
-                    break;
-                default:
-                    break;
-                }
+                    switch (DST) { // Enable writing of multiplication result to destination
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromMulAftLoad = true;
+                            grfa_wr_from_fromMulAftLoad = MUX_FPU;
+        //							grfa_wr_addr_fromMulAftLoad = DST_N.to_uint();
+                            grfa_wr_addr_fromMulAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromMulAftLoad = true;
+                            grfb_wr_from_fromMulAftLoad = MUX_FPU;
+        //							grfb_wr_addr_fromMulAftLoad = DST_N.to_uint();
+                            grfb_wr_addr_fromMulAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
+                } else {	// Loading from RFs only
+                    switch (SRC0) {	// Select first input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_comb = SRC0_N.to_uint();
+                            grfa_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_comb = M1_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_comb = SRC0_N.to_uint();
+                            grfb_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_comb = M1_GRF_B1;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_comb = SRC1_N.to_uint();
+                            grfa_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_comb = M2_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_comb = SRC1_N.to_uint();
+                            grfb_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_comb = M2_GRF_B2;
+                        break;
+                        case OPC_SRF_M:
+        //							srf_rd_addr_comb = SRC1_N.to_uint();
+                            srf_rd_addr_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_comb = false;
+                            fpu_mult_in2_sel_comb = M2_SRF;
+                        break;
+                        default:
+                        break;
+                    }
 
-                mul_en_toMoA = true; // Enable multiplication for the next 5 cycles
-                fpu_out_sel_fromMul = true;	// Select multiplier output when necessary
+                    mul_en_toMoA = true; // Enable multiplication for the next 5 cycles
+                    fpu_out_sel_fromMul = true;	// Select multiplier output when necessary
 
-                switch (DST) {// Enable writing of multiplication result to destination
-                case OPC_GRF_A:
-                    grfa_wr_en_fromMul = true;
-                    grfa_wr_from_fromMul = MUX_FPU;
-//							grfa_wr_addr_fromMul = DST_N.to_uint();
-                    grfa_wr_addr_fromMul =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_fromMul = true;
-                    grfb_wr_from_fromMul = MUX_FPU;
-//							grfb_wr_addr_fromMul = DST_N.to_uint();
-                    grfb_wr_addr_fromMul =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
+                    switch (DST) {// Enable writing of multiplication result to destination
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromMul = true;
+                            grfa_wr_from_fromMul = MUX_FPU;
+        //							grfa_wr_addr_fromMul = DST_N.to_uint();
+                            grfa_wr_addr_fromMul =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromMul = true;
+                            grfb_wr_from_fromMul = MUX_FPU;
+        //							grfb_wr_addr_fromMul = DST_N.to_uint();
+                            grfb_wr_addr_fromMul =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
                 }
-            }
             break;
 
             // DST(DST_N) = SRC0(SRC0_N) * SRC1(SRC1_N) + SRC2(SRC1_N)
-        case OP_MAD:
-            if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
-                    || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
-                switch (SRC0) {	// Select first input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
-                    grfa_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_nxt = M1_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
-                    grfb_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_nxt = M1_GRF_B1;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_mult_in1_sel_nxt = M1_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_mult_in1_sel_nxt = M1_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr2_nxt = SRC1_N.to_uint();
-                    grfa_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_nxt = M2_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_nxt = SRC1_N.to_uint();
-                    grfa_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_nxt = M2_GRF_B2;
-                    break;
-                case OPC_SRF_M:
-//							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
-                    srf_rd_addr_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_toMAWAftLoad = false;
-                    fpu_mult_in2_sel_nxt = M2_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_mult_in2_sel_nxt = M2_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_mult_in2_sel_nxt = M2_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC2) {	// Select first input to adder
-                case OPC_GRF_A:
-//							grfa_rd_addr1_toAddAftLoad = SRC1_N.to_uint();
-                    grfa_rd_addr1_toAddAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in1_sel_toAddAftLoad = A_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toAddAftLoad = SRC1_N.to_uint();
-                    grfb_rd_addr1_toAddAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in1_sel_toAddAftLoad = A_GRF_B1;
-                    break;
-                case OPC_SRF_A:
-//							srf_rd_addr_toAddAftLoad = SRC1_N.to_uint();
-                    srf_rd_addr_toAddAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_toAddAftLoad = true;
-                    fpu_add_in1_sel_toAddAftLoad = A_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_add_in1_sel_toAddAftLoad = A_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_add_in1_sel_toAddAftLoad = A_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                fpu_add_in2_sel_toAddAftLoad = A_MULT_OUT;// Select second input as mult result when necessary
+            case OP_MAD:
+                if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
+                        || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
+                    switch (SRC0) {	// Select first input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
+                            grfa_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_nxt = M1_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toMAWAftLoad = SRC0_N.to_uint();
+                            grfb_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_nxt = M1_GRF_B1;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_mult_in1_sel_nxt = M1_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_mult_in1_sel_nxt = M1_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_nxt = SRC1_N.to_uint();
+                            grfa_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_nxt = M2_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_nxt = SRC1_N.to_uint();
+                            grfa_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_nxt = M2_GRF_B2;
+                        break;
+                        case OPC_SRF_M:
+        //							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
+                            srf_rd_addr_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_toMAWAftLoad = false;
+                            fpu_mult_in2_sel_nxt = M2_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_mult_in2_sel_nxt = M2_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_mult_in2_sel_nxt = M2_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC2) {	// Select first input to adder
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_toAddAftLoad = SRC1_N.to_uint();
+                            grfa_rd_addr1_toAddAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in1_sel_toAddAftLoad = A_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toAddAftLoad = SRC1_N.to_uint();
+                            grfb_rd_addr1_toAddAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in1_sel_toAddAftLoad = A_GRF_B1;
+                        break;
+                        case OPC_SRF_A:
+        //							srf_rd_addr_toAddAftLoad = SRC1_N.to_uint();
+                            srf_rd_addr_toAddAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_toAddAftLoad = true;
+                            fpu_add_in1_sel_toAddAftLoad = A_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_add_in1_sel_toAddAftLoad = A_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_add_in1_sel_toAddAftLoad = A_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    fpu_add_in2_sel_toAddAftLoad = A_MULT_OUT;// Select second input as mult result when necessary
 
-                mul_en_toMoAAftLoad = true; // Enable multiplication for 5 cycles after next one
-                add_en_toAddAftLoad = true;	// Enable addition for the 5 cycles after multiplication
+                    mul_en_toMoAAftLoad = true; // Enable multiplication for 5 cycles after next one
+                    add_en_toAddAftLoad = true;	// Enable addition for the 5 cycles after multiplication
 
-                switch (DST) {	// Enable writing of MAD result to destination
-                case OPC_GRF_A:
-                    grfa_wr_en_fromMaAAftLoad = true;
-                    grfa_wr_from_fromMaAAftLoad = MUX_FPU;
-//							grfa_wr_addr_fromMaAAftLoad = DST_N.to_uint();
-                    grfa_wr_addr_fromMaAAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_fromMaAAftLoad = true;
-                    grfb_wr_from_fromMaAAftLoad = MUX_FPU;
-//							grfb_wr_addr_fromMaAAftLoad = DST_N.to_uint();
-                    grfb_wr_addr_fromMaAAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                }
-            } else {	// Loading from RFs only
-                switch (SRC0) {	// Select first input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr1_comb = SRC0_N.to_uint();
-                    grfa_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_comb = M1_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_comb = SRC0_N.to_uint();
-                    grfb_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_comb = M1_GRF_B1;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr2_comb = SRC1_N.to_uint();
-                    grfa_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_comb = M2_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_comb = SRC1_N.to_uint();
-                    grfb_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_comb = M2_GRF_B2;
-                    break;
-                case OPC_SRF_M:
-//							srf_rd_addr_comb = SRC1_N.to_uint();
-                    srf_rd_addr_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_comb = false;
-                    fpu_mult_in2_sel_comb = M2_SRF;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC2) {	// Select first input to adder
-                case OPC_GRF_A:
-//							grfa_rd_addr1_toAdd = SRC1_N.to_uint();
-                    grfa_rd_addr1_toAdd =
-                            AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in1_sel_toAdd = A_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toAdd = SRC1_N.to_uint();
-                    grfb_rd_addr1_toAdd =
-                            AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_add_in1_sel_toAdd = A_GRF_B1;
-                    break;
-                case OPC_SRF_A:
-//							srf_rd_addr_toAdd = SRC1_N.to_uint();
-                    srf_rd_addr_toAdd =
-                            AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_toAdd = true;
-                    fpu_add_in1_sel_toAdd = A_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_add_in1_sel_toAdd = A_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_add_in1_sel_toAdd = A_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                fpu_add_in2_sel_toAdd = A_MULT_OUT;	// Select second input as mult result when necessary
+                    switch (DST) {	// Enable writing of MAD result to destination
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromMaAAftLoad = true;
+                            grfa_wr_from_fromMaAAftLoad = MUX_FPU;
+        //							grfa_wr_addr_fromMaAAftLoad = DST_N.to_uint();
+                            grfa_wr_addr_fromMaAAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromMaAAftLoad = true;
+                            grfb_wr_from_fromMaAAftLoad = MUX_FPU;
+        //							grfb_wr_addr_fromMaAAftLoad = DST_N.to_uint();
+                            grfb_wr_addr_fromMaAAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
+                } else {	// Loading from RFs only
+                    switch (SRC0) {	// Select first input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_comb = SRC0_N.to_uint();
+                            grfa_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_comb = M1_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_comb = SRC0_N.to_uint();
+                            grfb_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_comb = M1_GRF_B1;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_comb = SRC1_N.to_uint();
+                            grfa_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_comb = M2_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_comb = SRC1_N.to_uint();
+                            grfb_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_comb = M2_GRF_B2;
+                        break;
+                        case OPC_SRF_M:
+        //							srf_rd_addr_comb = SRC1_N.to_uint();
+                            srf_rd_addr_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_comb = false;
+                            fpu_mult_in2_sel_comb = M2_SRF;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC2) {	// Select first input to adder
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_toAdd = SRC1_N.to_uint();
+                            grfa_rd_addr1_toAdd =
+                                    AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in1_sel_toAdd = A_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toAdd = SRC1_N.to_uint();
+                            grfb_rd_addr1_toAdd =
+                                    AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_add_in1_sel_toAdd = A_GRF_B1;
+                        break;
+                        case OPC_SRF_A:
+        //							srf_rd_addr_toAdd = SRC1_N.to_uint();
+                            srf_rd_addr_toAdd =
+                                    AAM ? aam_dst_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_toAdd = true;
+                            fpu_add_in1_sel_toAdd = A_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_add_in1_sel_toAdd = A_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_add_in1_sel_toAdd = A_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    fpu_add_in2_sel_toAdd = A_MULT_OUT;	// Select second input as mult result when necessary
 
-                mul_en_toMoA = true; // Enable multiplication for the next 5 cycles
-                add_en_toAdd = true; // Enable addition for the 5 cycles after multiplication
+                    mul_en_toMoA = true; // Enable multiplication for the next 5 cycles
+                    add_en_toAdd = true; // Enable addition for the 5 cycles after multiplication
 
-                switch (DST) {	// Enable writing of MAD result to destination
-                case OPC_GRF_A:
-                    grfa_wr_en_fromMaA = true;
-                    grfa_wr_from_fromMaA = MUX_FPU;
-//							grfa_wr_addr_fromMaA = DST_N.to_uint();
-                    grfa_wr_addr_fromMaA =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                case OPC_GRF_B:
-                    grfb_wr_en_fromMaA = true;
-                    grfb_wr_from_fromMaA = MUX_FPU;
-//							grfb_wr_addr_fromMaA = DST_N.to_uint();
-                    grfb_wr_addr_fromMaA =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
+                    switch (DST) {	// Enable writing of MAD result to destination
+                        case OPC_GRF_A:
+                            grfa_wr_en_fromMaA = true;
+                            grfa_wr_from_fromMaA = MUX_FPU;
+        //							grfa_wr_addr_fromMaA = DST_N.to_uint();
+                            grfa_wr_addr_fromMaA =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromMaA = true;
+                            grfb_wr_from_fromMaA = MUX_FPU;
+        //							grfb_wr_addr_fromMaA = DST_N.to_uint();
+                            grfb_wr_addr_fromMaA =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
                 }
-            }
             break;
 
             // DST(DST_N) = SRC0(SRC0_N) * SRC1(SRC1_N) + DST(DST_N)
-        case OP_MAC:
-            if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
-                    || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
-                switch (SRC0) {	// Select first input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr1_toMAWAftLoad = AAM ? aam_grfa_addr.to_uint() : SRC0_N.to_uint();
-                    grfa_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_nxt = M1_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toMAWAftLoad = AAM ? aam_grfb_addr.to_uint() : SRC0_N.to_uint();
-                    grfb_rd_addr1_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_nxt = M1_GRF_B1;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_mult_in1_sel_nxt = M1_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_mult_in1_sel_nxt = M1_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr2_nxt = AAM ? aam_grfa_addr.to_uint() : SRC1_N.to_uint();
-                    grfa_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_nxt = M2_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_nxt = AAM ? aam_grfb_addr.to_uint() : SRC1_N.to_uint();
-                    grfb_rd_addr2_nxt =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_nxt = M2_GRF_B2;
-                    break;
-                case OPC_SRF_M:
-//							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
-                    srf_rd_addr_toMAWAftLoad =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_toMAWAftLoad = false;
-                    fpu_mult_in2_sel_nxt = M2_SRF;
-                    break;
-                case OPC_EVEN_BANK:
-                    fpu_mult_in2_sel_nxt = M2_EVEN_BANK;
-                    break;
-                case OPC_ODD_BANK:
-                    fpu_mult_in2_sel_nxt = M2_ODD_BANK;
-                    break;
-                default:
-                    break;
-                }
-                switch (DST) {	// Select first input to adder
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toAddAftLoad = AAM ? aam_grfb_addr.to_uint() : DST_N.to_uint();
-                    grfb_rd_addr1_toAddAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    fpu_add_in1_sel_toAddAftLoad = A_GRF_B1;
-                    break;
-                default:
-                    break;
-                }
-                fpu_add_in2_sel_toAddAftLoad = A_MULT_OUT;// Select second input as mult result when necessary
+            case OP_MAC:
+                if (SRC0 == OPC_EVEN_BANK || SRC0 == OPC_ODD_BANK
+                        || SRC1 == OPC_EVEN_BANK || SRC1 == OPC_ODD_BANK) {	// Loading from bank
+                    switch (SRC0) {	// Select first input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_toMAWAftLoad = AAM ? aam_grfa_addr.to_uint() : SRC0_N.to_uint();
+                            grfa_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_nxt = M1_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toMAWAftLoad = AAM ? aam_grfb_addr.to_uint() : SRC0_N.to_uint();
+                            grfb_rd_addr1_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_nxt = M1_GRF_B1;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_mult_in1_sel_nxt = M1_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_mult_in1_sel_nxt = M1_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_nxt = AAM ? aam_grfa_addr.to_uint() : SRC1_N.to_uint();
+                            grfa_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_nxt = M2_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_nxt = AAM ? aam_grfb_addr.to_uint() : SRC1_N.to_uint();
+                            grfb_rd_addr2_nxt =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_nxt = M2_GRF_B2;
+                        break;
+                        case OPC_SRF_M:
+        //							srf_rd_addr_toMAWAftLoad = SRC1_N.to_uint();
+                            srf_rd_addr_toMAWAftLoad =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_toMAWAftLoad = false;
+                            fpu_mult_in2_sel_nxt = M2_SRF;
+                        break;
+                        case OPC_EVEN_BANK:
+                            fpu_mult_in2_sel_nxt = M2_EVEN_BANK;
+                        break;
+                        case OPC_ODD_BANK:
+                            fpu_mult_in2_sel_nxt = M2_ODD_BANK;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (DST) {	// Select first input to adder
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toAddAftLoad = AAM ? aam_grfb_addr.to_uint() : DST_N.to_uint();
+                            grfb_rd_addr1_toAddAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                            fpu_add_in1_sel_toAddAftLoad = A_GRF_B1;
+                        break;
+                        default:
+                        break;
+                    }
+                    fpu_add_in2_sel_toAddAftLoad = A_MULT_OUT;// Select second input as mult result when necessary
 
-                mul_en_toMoAAftLoad = true; // Enable multiplication for 5 cycles after next one
-                add_en_toAddAftLoad = true;	// Enable addition for the 5 cycles after multiplication
+                    mul_en_toMoAAftLoad = true; // Enable multiplication for 5 cycles after next one
+                    add_en_toAddAftLoad = true;	// Enable addition for the 5 cycles after multiplication
 
-                switch (DST) {	// Enable writing of MAC result to destination
-                case OPC_GRF_B:
-                    grfb_wr_en_fromMaAAftLoad = true;
-                    grfb_wr_from_fromMaAAftLoad = MUX_FPU;
-//							grfb_wr_addr_fromMaAAftLoad = AAM ? aam_grfb_addr.to_uint() : DST_N.to_uint();
-                    grfb_wr_addr_fromMaAAftLoad =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
-                }
-            } else {	// Loading from RFs only
-                switch (SRC0) {	// Select first input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr1_comb = SRC0_N.to_uint();
-                    grfa_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_comb = M1_GRF_A1;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr1_comb = SRC0_N.to_uint();
-                    grfb_rd_addr1_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
-                    fpu_mult_in1_sel_comb = M1_GRF_B1;
-                    break;
-                default:
-                    break;
-                }
-                switch (SRC1) {	// Select second input to multiplier
-                case OPC_GRF_A:
-//							grfa_rd_addr2_comb = SRC1_N.to_uint();
-                    grfa_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_comb = M2_GRF_A2;
-                    break;
-                case OPC_GRF_B:
-//							grfb_rd_addr2_comb = SRC1_N.to_uint();
-                    grfb_rd_addr2_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    fpu_mult_in2_sel_comb = M2_GRF_B2;
-                    break;
-                case OPC_SRF_M:
-//							srf_rd_addr_comb = SRC1_N.to_uint();
-                    srf_rd_addr_comb =
-                            AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
-                    srf_rd_a_nm_comb = false;
-                    fpu_mult_in2_sel_comb = M2_SRF;
-                    break;
-                default:
-                    break;
-                }
-                switch (DST) {	// Select first input to adder
-                case OPC_GRF_B:
-//							grfb_rd_addr1_toAdd = DST_N.to_uint();
-                    grfb_rd_addr1_toAdd =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    fpu_add_in1_sel_toAdd = A_GRF_B1;
-                    break;
-                default:
-                    break;
-                }
-                fpu_add_in2_sel_toAdd = A_MULT_OUT;	// Select second input as mult result when necessary
+                    switch (DST) {	// Enable writing of MAC result to destination
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromMaAAftLoad = true;
+                            grfb_wr_from_fromMaAAftLoad = MUX_FPU;
+        //							grfb_wr_addr_fromMaAAftLoad = AAM ? aam_grfb_addr.to_uint() : DST_N.to_uint();
+                            grfb_wr_addr_fromMaAAftLoad =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
+                } else {	// Loading from RFs only
+                    switch (SRC0) {	// Select first input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr1_comb = SRC0_N.to_uint();
+                            grfa_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_comb = M1_GRF_A1;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_comb = SRC0_N.to_uint();
+                            grfb_rd_addr1_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC0_N.to_uint();
+                            fpu_mult_in1_sel_comb = M1_GRF_B1;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (SRC1) {	// Select second input to multiplier
+                        case OPC_GRF_A:
+        //							grfa_rd_addr2_comb = SRC1_N.to_uint();
+                            grfa_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_comb = M2_GRF_A2;
+                        break;
+                        case OPC_GRF_B:
+        //							grfb_rd_addr2_comb = SRC1_N.to_uint();
+                            grfb_rd_addr2_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            fpu_mult_in2_sel_comb = M2_GRF_B2;
+                        break;
+                        case OPC_SRF_M:
+        //							srf_rd_addr_comb = SRC1_N.to_uint();
+                            srf_rd_addr_comb =
+                                    AAM ? aam_src_addr.to_uint() : SRC1_N.to_uint();
+                            srf_rd_a_nm_comb = false;
+                            fpu_mult_in2_sel_comb = M2_SRF;
+                        break;
+                        default:
+                        break;
+                    }
+                    switch (DST) {	// Select first input to adder
+                        case OPC_GRF_B:
+        //							grfb_rd_addr1_toAdd = DST_N.to_uint();
+                            grfb_rd_addr1_toAdd =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                            fpu_add_in1_sel_toAdd = A_GRF_B1;
+                        break;
+                        default:
+                        break;
+                    }
+                    fpu_add_in2_sel_toAdd = A_MULT_OUT;	// Select second input as mult result when necessary
 
-                mul_en_toMoA = true; // Enable multiplication for the next 5 cycles
-                add_en_toAdd = true; // Enable addition for the 5 cycles after multiplication
+                    mul_en_toMoA = true; // Enable multiplication for the next 5 cycles
+                    add_en_toAdd = true; // Enable addition for the 5 cycles after multiplication
 
-                switch (DST) {	// Enable writing of MAC result to destination
-                case OPC_GRF_B:
-                    grfb_wr_en_fromMaA = true;
-                    grfb_wr_from_fromMaA = MUX_FPU;
-//							grfb_wr_addr_fromMaA = DST_N.to_uint();
-                    grfb_wr_addr_fromMaA =
-                            AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
-                    break;
+                    switch (DST) {	// Enable writing of MAC result to destination
+                        case OPC_GRF_B:
+                            grfb_wr_en_fromMaA = true;
+                            grfb_wr_from_fromMaA = MUX_FPU;
+        //							grfb_wr_addr_fromMaA = DST_N.to_uint();
+                            grfb_wr_addr_fromMaA =
+                                    AAM ? aam_dst_addr.to_uint() : DST_N.to_uint();
+                        break;
+                    }
                 }
-            }
             break;
         }
     }

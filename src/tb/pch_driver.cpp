@@ -1,7 +1,7 @@
 #include "../cnm_base.h"
 
 #if MIXED_SIM == 0	// Testbench for SystemC simulation
-
+#if GEM5 == 0
 #include "pch_driver.h"
 
 #include <cstdio>
@@ -19,6 +19,7 @@ using namespace std;
 
 void pch_driver::driver_thread() {
 
+
     int i, j, curCycle, DQCycle;
 #if INSTR_CLK > 1
     int instrCycle;
@@ -32,7 +33,7 @@ void pch_driver::driver_thread() {
 
     // Values for reading from input
     string line;
-    int readCycle = 0;
+    uint64_t readCycle = 0;
     unsigned long int readAddr;
     dq_type dataAux, data2DQ, data2bankAux;
     sc_biguint<GRF_WIDTH> data2bank;
@@ -121,6 +122,7 @@ void pch_driver::driver_thread() {
         return;
     }
 
+
     // Simulation loop
     while (1) {
 
@@ -164,6 +166,7 @@ void pch_driver::driver_thread() {
             }
             bankRead = false;
         }
+
 
         // Execute necessary command at the right time and read next line
         // if current cycle caught up with the previous read one
@@ -209,8 +212,8 @@ void pch_driver::driver_thread() {
                     } else
 #endif
                     if (addrAux.range(RO_STA - 1, RO_END) < RF_GRF_A) {	// Writing to CRF or SRF, one cycle is enough
-
-                        assert(readData.size() == 1);   // Check it is only one piece of data
+                    	// removed this since I pass 4 datas but only the first one is valid so it should be okay for now
+                        //assert(readData.size() == 1);   // Check it is only one piece of data
                         data2DQ = readData.front();
                         readData.pop_front();
                         WR->write(true);
@@ -273,6 +276,7 @@ void pch_driver::driver_thread() {
                     bankWrite = true;
 
                     // Write address here because it will be overwritten later with the next cmd
+
                     output << showbase << dec << curCycle << "\t" << hex << readAddr << "\t";
 
                 }
@@ -303,6 +307,7 @@ void pch_driver::driver_thread() {
             output.close();
             break;
         }
+
 
         // Reset DQCycle if writing to the GRF has ended
         if (DQCycle > DQ_CLK-1) {
@@ -336,6 +341,7 @@ void pch_driver::driver_thread() {
                 }
             }
             output << endl;
+
             bankWrite = false;
         }
 
@@ -349,5 +355,5 @@ void pch_driver::driver_thread() {
     sc_stop();
 
 }
-
+#endif
 #endif

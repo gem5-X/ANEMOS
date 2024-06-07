@@ -846,6 +846,15 @@ template <>
 bool Controller<GDDR5_AB>::enqueue(Request& req);
 
 template <>
+bool Controller<PCM_AB>::enqueue(Request& req);
+
+template <>
+bool Controller<RRAM_AB>::enqueue(Request& req);
+
+template <>
+bool Controller<STTRAM_AB>::enqueue(Request& req);
+
+template <>
 void Controller<HBM_AB>::tick();
 
 template <>
@@ -859,6 +868,15 @@ void Controller<LPDDR4_AB>::tick();
 
 template <>
 void Controller<GDDR5_AB>::tick();
+
+template <>
+void Controller<PCM_AB>::tick();
+
+template <>
+void Controller<RRAM_AB>::tick();
+
+template <>
+void Controller<STTRAM_AB>::tick();
 
 } /*namespace ramulator*/
 

@@ -34,6 +34,9 @@
 #include "TLDRAM.h"
 #include "STTMRAM.h"
 #include "PCM.h"
+#include "PCM_AB.h"
+#include "RRAM_AB.h"
+#include "STTRAM_AB.h"
 
 using namespace std;
 using namespace ramulator;
@@ -283,6 +286,17 @@ int main(int argc, const char *argv[])
     } else if (standard == "PCM") {
       PCM* pcm = new PCM(configs["org"], configs["speed"]);
       start_run(configs, pcm, files);
+    }
+    // NMV-based memory from NVmain
+    else if (standard == "PCM_AB") {
+      PCM_AB* pcm = new PCM_AB(configs["org"], configs["speed"]);
+      start_run(configs, pcm, files);
+    } else if (standard == "RRAM_AB") {
+      RRAM_AB* rram = new RRAM_AB(configs["org"], configs["speed"]);
+      start_run(configs, rram, files);
+    } else if (standard == "STTRAM_AB") {
+      STTRAM_AB* sttram = new STTRAM_AB(configs["org"], configs["speed"]);
+      start_run(configs, sttram, files);
     }
     // Various refresh mechanisms
       else if (standard == "DSARP") {

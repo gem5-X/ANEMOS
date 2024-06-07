@@ -11,11 +11,11 @@ sed -i "s/#define CORES_PER_PCH   1/#define CORES_PER_PCH   8/g" ../src/defs.h
 cd ../Debug
 make all
 cd ../inputs
-sed -i "s/#define CORES_PER_PCH   1/#define CORES_PER_PCH   8/g" map_kernel.h
 ./compile_all.sh
 make -C $HOME/Documents/ramulator-AB/ -j4
 bin/map_kernel ewarwC32R8S16HBMV256n256 EWARW 256 256
 bin/map_kernel dpC32R8S16HBMV256n256 DP 256 256
+bin/map_kernel mvmC32R8S16HBM16x16 MMS 1 16 16
 bin/map_kernel mvmC32R8S16HBM32x32 MMS 1 32 32
 bin/map_kernel mvmC32R8S16HBM64x64 MMS 1 64 64
 bin/map_kernel mvmC32R8S16HBM128x128 MMS 1 128 128
@@ -28,6 +28,8 @@ echo "EWARW V = 256 n = 256" >> ../scripts/kernels_hbm.times
 ./assembly2sc.sh ewarwC32R8S16HBMV256n256 >> ../scripts/kernels_hbm.times
 echo "DP V = 256 n = 256" >> ../scripts/kernels_hbm.times
 ./assembly2sc.sh dpC32R8S16HBMV256n256 >> ../scripts/kernels_hbm.times
+echo "MVM 16x16" >> ../scripts/kernels_hbm.times
+./assembly2sc.sh mvmC32R8S16HBM16x16 >> ../scripts/kernels_hbm.times
 echo "MVM 32x32" >> ../scripts/kernels_hbm.times
 ./assembly2sc.sh mvmC32R8S16HBM32x32 >> ../scripts/kernels_hbm.times
 echo "MVM 64x64" >> ../scripts/kernels_hbm.times

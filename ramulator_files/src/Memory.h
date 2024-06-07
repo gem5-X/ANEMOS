@@ -17,6 +17,9 @@
 #include "LPDDR4_AB.h"
 #include "WideIO2.h"
 #include "DSARP.h"
+#include "PCM_AB.h"
+#include "RRAM_AB.h"
+#include "STTRAM_AB.h"
 #include <vector>
 #include <functional>
 #include <cmath>

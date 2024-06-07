@@ -15,6 +15,7 @@
 #include "defs.h"
 
 #ifdef __SYNTHESIS__
+#include "systemc.h"
 #include <ac_std_float.h>
 #include <ac_sc.h>
 #else
@@ -28,7 +29,7 @@ using half_float::half;
 #define INT_TYPE    0       // 1 if Integer data type, 0 otherwise
 #endif
 
-#if (DATA_TYPE == 0)
+#if (DATA_TYPE == 0 || DATA_TYPE == 3) // TODO until bfloat is implemented
 #define HALF_FLOAT  1       // 1 if Half Precision Floating Point data type, 0 otherwise
 #else
 #define HALF_FLOAT  0
@@ -68,7 +69,7 @@ floating point 64  => ac_ieee_float64
             uint32_t    bin;
         } cnm_union;
     #else
-        typedef ac_ieee_fp32    cnm_synth;
+        typedef ac_ieee_float32    cnm_synth;
     #endif
 #elif (DATA_TYPE == 2)  // double
     #define WORD_BITS 64
@@ -80,10 +81,16 @@ floating point 64  => ac_ieee_float64
             uint64_t    bin;
         } cnm_union;
     #else
-        typedef ac_ieee_fp64    cnm_synth;
+        typedef ac_ieee_float64    cnm_synth;
     #endif
 #elif (DATA_TYPE == 3)  // bfloat
-
+    #define WORD_BITS   16
+    #ifndef __SYNTHESIS__
+        typedef half        cnm_t;
+        typedef uint16_t    rfBin_t;
+    #else
+        typedef ac_std_float<16,8>  cnm_synth;
+    #endif
 #elif (DATA_TYPE == 4)  // int8
     #define WORD_BITS 8
     #ifndef __SYNTHESIS__

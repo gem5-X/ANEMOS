@@ -20,6 +20,9 @@
 #include "HBM2.h"
 #include "HBM2_AB.h"
 #include "SALP.h"
+#include "PCM_AB.h"
+#include "RRAM_AB.h"
+#include "STTRAM_AB.h"
 
 using namespace ramulator;
 
@@ -31,6 +34,7 @@ static map<string, function<MemoryBase *(const Config&, int)> > name_to_func = {
     {"HBM", &MemoryFactory<HBM>::create}, {"HBM_AB", &MemoryFactory<HBM_AB>::create},
     {"HBM2", &MemoryFactory<HBM2>::create}, {"HBM2_AB", &MemoryFactory<HBM2_AB>::create},
     {"SALP-1", &MemoryFactory<SALP>::create}, {"SALP-2", &MemoryFactory<SALP>::create}, {"SALP-MASA", &MemoryFactory<SALP>::create},
+    {"PCM_AB", &MemoryFactory<PCM_AB>::create}, {"RRAM_AB", &MemoryFactory<RRAM_AB>::create}, {"STTRAM_AB", &MemoryFactory<STTRAM_AB>::create}
 };
 
 

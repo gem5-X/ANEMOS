@@ -2,10 +2,10 @@
 [*] GTKWave Analyzer v3.3.66 (w)1999-2015 BSI
 [*] Wed Jan 26 15:23:06 2022
 [*]
-[dumpfile] "/home/rafam/eclipse-workspace/pim-cores/waveforms/imc_wave.vcd"
+[dumpfile] "${PROJECT_ROOT}/waveforms/imc_wave.vcd"
 [dumpfile_mtime] "Wed Jan 26 15:22:49 2022"
 [dumpfile_size] 110248
-[savefile] "/home/rafam/eclipse-workspace/pim-cores/waveforms/imc_tb.gtkw"
+[savefile] "${PROJECT_ROOT}/waveforms/imc_tb.gtkw"
 [timestart] 4808700
 [size] 943 1028
 [pos] -1 -1
@@ -35,7 +35,7 @@ SystemC.ext2grf[15:0]
 @24
 SystemC.PC[7:0]
 @4022
-^>1 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/instruction_translate.exe
+^>1 /${PROJECT_ROOT}/waveforms/instruction_translate.exe
 SystemC.instr[31:0]
 @c00022
 SystemC.even_bus[255:0]
@@ -319,7 +319,7 @@ SystemC.srf_rd_a_nm
 SystemC.srf_wr_a_nm
 SystemC.srf_wr_en
 @2022
-^1 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/storage.alias
+^1 /${PROJECT_ROOT}/waveforms/storage.alias
 SystemC.srf_wr_from[7:0]
 @22
 SystemC.srf_out[15:0]
@@ -333,7 +333,7 @@ SystemC.grfa_wr_addr[31:0]
 SystemC.grfa_wr_en
 SystemC.grfa_relu_en
 @2022
-^1 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/storage.alias
+^1 /${PROJECT_ROOT}/waveforms/storage.alias
 SystemC.grfa_wr_from[7:0]
 @22
 SystemC.grfa_out1[15:0]
@@ -348,7 +348,7 @@ SystemC.grfb_wr_addr[31:0]
 SystemC.grfb_wr_en
 SystemC.grfb_relu_en
 @2022
-^1 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/storage.alias
+^1 /${PROJECT_ROOT}/waveforms/storage.alias
 SystemC.grfb_wr_from[7:0]
 @22
 SystemC.grfb_out1[15:0]
@@ -359,13 +359,13 @@ SystemC.grfb_out2[15:0]
 SystemC.fpu_mult_en
 SystemC.fpu_add_en
 @2022
-^2 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/mul1_sel.alias
+^2 /${PROJECT_ROOT}/waveforms/mul1_sel.alias
 SystemC.fpu_mult_in1_sel[7:0]
-^3 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/mul2_sel.alias
+^3 /${PROJECT_ROOT}/waveforms/mul2_sel.alias
 SystemC.fpu_mult_in2_sel[7:0]
-^4 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/add_sel.alias
+^4 /${PROJECT_ROOT}/waveforms/add_sel.alias
 SystemC.fpu_add_in1_sel[7:0]
-^4 /tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/../../../../tmp/../home/rafam/eclipse-workspace/pim-cores/waveforms/add_sel.alias
+^4 /${PROJECT_ROOT}/waveforms/add_sel.alias
 SystemC.fpu_add_in2_sel[7:0]
 @28
 SystemC.fpu_out_sel

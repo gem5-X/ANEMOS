@@ -73,7 +73,7 @@ public:
     //Shared memory and semaphores
     const char* semName1 = "/mySemaphore1";
     const char* semName2 = "/mySemaphore2";
-    const char* shmName = "/rafaSharedMemory";
+    const char* shmName = "/sharedMemory";
 
 #endif
 

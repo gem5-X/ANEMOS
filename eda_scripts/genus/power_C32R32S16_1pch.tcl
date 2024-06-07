@@ -10,22 +10,22 @@
 read_db designs/imc_C32R32S16_1pch.db
 
 # Read VCD/hbmCR and report for every IMC core and testbench
-read_vcd /home/rmedina/VCD/hbmCR/imc_C32R32S16_dpV128n128_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/hbmCR/imc_C32R32S16_dpV128n128_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/dpV128n128_C32R32S16_1pch/imc_0.rep
 
-read_vcd /home/rmedina/VCD/hbmCR/imc_C32R32S16_ewarwV128n128_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/hbmCR/imc_C32R32S16_ewarwV128n128_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/ewarwV128n128_C32R32S16_1pch/imc_0.rep
 
-read_vcd /home/rmedina/VCD/hbmCR/imc_C32R32S16_mvm180x180_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/hbmCR/imc_C32R32S16_mvm180x180_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm180x180_C32R32S16_1pch/imc_0.rep
 
-read_vcd /home/rmedina/VCD/hbmCR/imc_C32R32S16_mvm1024x1024_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/hbmCR/imc_C32R32S16_mvm1024x1024_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm1024x1024_C32R32S16_1pch/imc_0.rep
 
-read_vcd /home/rmedina/VCD/hbmCR/imc_C32R32S16_mmsm60n60q60_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/hbmCR/imc_C32R32S16_mmsm60n60q60_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mmsm60n60q60_C32R32S16_1pch/imc_0.rep
 
-read_vcd /home/rmedina/VCD/hbmCR/imc_C32R32S16_ccwwri11x11x34o9x9x16k3_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/hbmCR/imc_C32R32S16_ccwwri11x11x34o9x9x16k3_HBM.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/ccwwri11x11x34o9x9x16k3_C32R32S16_1pch/imc_0.rep
 
 quit

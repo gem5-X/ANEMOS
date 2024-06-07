@@ -18,7 +18,7 @@ vsim -c -do OUT/DO/sim_ccwwri24x24x32o20x20x64k5_hbm32bank.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R8S16_HBM.tcl
-rm /home/rmedina/VCD/*.vcd.gz
+rm ${VCD_FILES}/*.vcd.gz
 
 
 # Go back to original

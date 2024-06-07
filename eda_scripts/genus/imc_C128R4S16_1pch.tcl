@@ -6,8 +6,8 @@
 
 # Configure Genus and the search paths
 set_db information_level 7
-set_db init_lib_search_path /home/rmedina/shares/local/scrap/pim_cores/LIBS
-set_db init_hdl_search_path /home/rmedina/shares/local/scrap/pim_cores/HDL/RTL
+set_db init_lib_search_path ${EDA_PROJECT_ROOT}/LIBS
+set_db init_hdl_search_path ${EDA_PROJECT_ROOT}/HDL/RTL
 
 # Read the tech library and the HDL file
 set_db library tcbn28hpcbwp30p140tt0p8v25c_ccs.lib
@@ -70,11 +70,11 @@ write_sdf > TIM/imc_C128R4S16_1pch.sdf
 write_db -to_file designs/imc_C128R4S16_1pch.db -all_root_attributes
 
 # Power analysis
-#read_vcd /home/rmedina/shares/local/scrap/pim_cores/MGC_QSIM/OUT/VCD/pch_C128R4S16_dpV100n100.vcd -vcd_scope /top/IMCcoreUnderTest_0
+#read_vcd ${EDA_PROJECT_ROOT}/MGC_QSIM/OUT/VCD/pch_C128R4S16_dpV100n100.vcd -vcd_scope /top/IMCcoreUnderTest_0
 #report_power -by_hierarchy > RPT/power/pch_C128R4S16_dpV100n100.rep
-#read_vcd /home/rmedina/shares/local/scrap/pim_cores/MGC_QSIM/OUT/VCD/pch_C128R4S16_ewarwV100n100.vcd
+#read_vcd ${EDA_PROJECT_ROOT}/MGC_QSIM/OUT/VCD/pch_C128R4S16_ewarwV100n100.vcd
 #report_power -by_hierarchy > RPT/power/pch_C128R4S16_ewarwV100n100.rep
-#read_vcd /home/rmedina/shares/local/scrap/pim_cores/MGC_QSIM/OUT/VCD/pch_C128R4S16_ewacwV100n100.vcd
+#read_vcd ${EDA_PROJECT_ROOT}/MGC_QSIM/OUT/VCD/pch_C128R4S16_ewacwV100n100.vcd
 #report_power -by_hierarchy > RPT/power/pch_C128R4S16_ewacwV100n100.rep
 
 #read_db designs/pch_C128R4S16.db

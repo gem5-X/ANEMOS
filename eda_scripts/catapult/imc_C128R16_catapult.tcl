@@ -4,7 +4,7 @@
 solution new -state initial
 solution options defaults
 solution options set /Input/Compiler Custom
-solution options set /Input/CompilerHome /home/rmedina/shares/local/scrap/GCC-5.4.0/bin
+solution options set /Input/CompilerHome ${GCC_ROOT}/bin
 solution options set /Input/CppStandard c++11
 
 # Add the C++/SystemC files

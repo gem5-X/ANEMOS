@@ -6,7 +6,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C16R4.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C16R4S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C16R8
 cd ../MGC_QSIM
@@ -20,7 +20,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C16R8.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C16R8S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C16R16
 cd ../MGC_QSIM
@@ -34,7 +34,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C16R16.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C16R16S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C16R32
 cd ../MGC_QSIM
@@ -48,7 +48,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C16R32.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C16R32S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C32R4
 cd ../MGC_QSIM
@@ -62,7 +62,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C32R4.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R4S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C32R8
 cd ../MGC_QSIM
@@ -76,7 +76,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C32R8.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R8S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C32R16
 cd ../MGC_QSIM
@@ -90,7 +90,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C32R16.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R16S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C32R32
 cd ../MGC_QSIM
@@ -104,7 +104,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C32R32.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R32S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C64R4
 cd ../MGC_QSIM
@@ -118,7 +118,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C64R4.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C64R4S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C64R8
 cd ../MGC_QSIM
@@ -132,7 +132,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C64R8.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C64R8S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C64R16
 cd ../MGC_QSIM
@@ -146,7 +146,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C64R16.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C64R16S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C64R32
 cd ../MGC_QSIM
@@ -160,7 +160,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C64R32.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C64R32S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C128R4
 cd ../MGC_QSIM
@@ -174,7 +174,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C128R4.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C128R4S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C128R8
 cd ../MGC_QSIM
@@ -188,7 +188,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C128R8.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C128R8S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C128R16
 cd ../MGC_QSIM
@@ -202,7 +202,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C128R16.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C128R16S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # C128R32
 cd ../MGC_QSIM
@@ -216,7 +216,7 @@ vsim -c -do OUT/DO/sim_mvm180x180_C128R32.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C128R32S16_1pch.tcl
-rm /home/rmedina/VCD/hbmCR/*.vcd.gz
+rm ${VCD_FILES}/hbmCR/*.vcd.gz
 
 # Go back to original
 cd ../MGC_QSIM

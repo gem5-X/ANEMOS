@@ -24,7 +24,7 @@ vsim -c -do OUT/DO/sim_ccwwri24x24x32o20x20x32k5_hbm.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R8S16_HBM.tcl
-rm /home/rmedina/VCD/*.vcd.gz
+rm ${VCD_FILES}/*.vcd.gz
 
 # DDR4
 cd ../MGC_QSIM
@@ -55,7 +55,7 @@ vsim -c -do OUT/DO/sim_ccwwri24x24x32o20x20x32k5_ddr4.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R8S4_DDR4.tcl
-rm /home/rmedina/VCD/*.vcd.gz
+rm ${VCD_FILES}/*.vcd.gz
 
 # GDDR5
 cd ../MGC_QSIM
@@ -87,7 +87,7 @@ vsim -c -do OUT/DO/sim_ccwwri24x24x32o20x20x32k5_gddr5.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R8S16_GDDR5.tcl
-rm /home/rmedina/VCD/*.vcd.gz
+rm ${VCD_FILES}/*.vcd.gz
 
 # LPDDR4
 cd ../MGC_QSIM
@@ -122,7 +122,7 @@ vsim -c -do OUT/DO/sim_ccwwri24x24x32o20x20x32k5_lpddr4.do
 
 cd ../CDS_GENUS
 genus -files TCL/power_C32R8S16_LPDDR4.tcl
-rm /home/rmedina/VCD/*.vcd.gz
+rm ${VCD_FILES}/*.vcd.gz
 
 # Go back to original
 cd ../MGC_QSIM

@@ -6,8 +6,8 @@
 
 # Configure Genus and the search paths
 set_db information_level 7
-set_db init_lib_search_path /home/rmedina/shares/local/scrap/pim_cores/LIBS
-set_db init_hdl_search_path /home/rmedina/shares/local/scrap/pim_cores/HDL/RTL
+set_db init_lib_search_path ${EDA_PROJECT_ROOT}/LIBS
+set_db init_hdl_search_path ${EDA_PROJECT_ROOT}/HDL/RTL
 
 # Read the tech library and the HDL file
 set_db library tcbn28hpmbwp35ff0p99v0c.lib

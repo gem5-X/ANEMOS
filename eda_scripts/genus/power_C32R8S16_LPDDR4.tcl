@@ -10,94 +10,94 @@
 read_db designs/imc_C32R8S16_LPDDR4.db
 
 # Read VCD and report for every IMC core and testbench
-read_vcd /home/rmedina/VCD/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/dpV256n256_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/dpV256n256_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/dpV256n256_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_dpV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/dpV256n256_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/ewarwV256n256_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/ewarwV256n256_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/ewarwV256n256_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_ewarwV256n256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/ewarwV256n256_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm32x32_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mvm32x32_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mvm32x32_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm32x32_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mvm32x32_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm64x64_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mvm64x64_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mvm64x64_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm64x64_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mvm64x64_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm128x128_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mvm128x128_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mvm128x128_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm128x128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mvm128x128_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm256x256_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mvm256x256_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mvm256x256_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm256x256_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mvm256x256_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm512x512_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mvm512x512_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mvm512x512_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm512x512_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mvm512x512_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mvm1024x1024_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mvm1024x1024_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mvm1024x1024_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mvm1024x1024_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mvm1024x1024_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/mmsm128n128q128_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/mmsm128n128q128_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/mmsm128n128q128_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_mmsm128n128q128_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/mmsm128n128q128_C32R8S16_LPDDR4/imc_3.rep
 
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
+read_vcd ${VCD_FILES}/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_0
 report_power -by_hierarchy > RPT/power/ccwwri24x24x32o20x20x32k5_C32R8S16_LPDDR4/imc_0.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
+read_vcd ${VCD_FILES}/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_1
 report_power -by_hierarchy > RPT/power/ccwwri24x24x32o20x20x32k5_C32R8S16_LPDDR4/imc_1.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
+read_vcd ${VCD_FILES}/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_2
 report_power -by_hierarchy > RPT/power/ccwwri24x24x32o20x20x32k5_C32R8S16_LPDDR4/imc_2.rep
-read_vcd /home/rmedina/VCD/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
+read_vcd ${VCD_FILES}/imc_C32R8S16_ccwwri24x24x32o20x20x32k5_LPDDR4.vcd.gz -vcd_scope /top/IMCcoreUnderTest_3
 report_power -by_hierarchy > RPT/power/ccwwri24x24x32o20x20x32k5_C32R8S16_LPDDR4/imc_3.rep
 
 quit

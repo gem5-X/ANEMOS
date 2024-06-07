@@ -6,16 +6,16 @@
 
 # Configure Genus and the search paths
 set_db information_level 7
-set_db init_lib_search_path /home/rmedina/shares/local/scrap/pim_cores/LIBS
-set_db init_hdl_search_path /home/rmedina/shares/local/scrap/pim_cores/HDL/RTL
+set_db init_lib_search_path ${EDA_PROJECT_ROOT}/LIBS
+set_db init_hdl_search_path ${EDA_PROJECT_ROOT}/HDL/RTL
 
 # Read the tech library and the HDL file
 set_db library tcbn28hpmbwp35tt0p9v25c.lib
 read_hdl imc_core.v
 
 # Set LEF and QRC files
-set_db lef_library /home/rmedina/shares/local/scrap/pim_cores/LIBS/tcbn28hpmbwp35_8lm5X2ZUTRDL.lef
-set_db qrc_tech_file /home/rmedina/shares/local/scrap/pim_cores/LIBS/qrcTechFile.rcworst
+set_db lef_library ${EDA_PROJECT_ROOT}/LIBS/tcbn28hpmbwp35_8lm5X2ZUTRDL.lef
+set_db qrc_tech_file ${EDA_PROJECT_ROOT}/LIBS/qrcTechFile.rcworst
 
 # Elaborate design
 elaborate imc_core

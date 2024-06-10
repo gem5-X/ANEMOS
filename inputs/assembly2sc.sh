@@ -4,7 +4,7 @@ bin/nmc_assembler assembly-input/$1.asm raw/$1.seq data-input/$1.data address-in
 
 bin/raw2ramulator raw/$1.seq ramulator-in/$1.trace
 
-$HOME/Documents/ramulator-AB/ramulator $HOME/Documents/ramulator-AB/configs/HBM_AB-config.cfg --mode=dram ramulator-in/$1.trace > ramulator-out/$1.cmd
+${RAMULATOR_ROOT}/ramulator ${RAMULATOR_ROOT}/configs/HBM_AB-config.cfg --mode=dram ramulator-in/$1.trace > ramulator-out/$1.cmd
 
 bin/ramulator2sc raw/$1.seq ramulator-out/$1.cmd SystemC/$1.sci 1
 

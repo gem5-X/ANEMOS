@@ -1,7 +1,6 @@
 #include "../cnm_base.h"
 
 #if MIXED_SIM == 0	// Testbench for SystemC simulation
-#if GEM5 == 0
 #include "pch_driver.h"
 
 #include <cstdio>
@@ -356,5 +355,4 @@ void pch_driver::driver_thread() {
     sc_stop();
 
 }
-#endif
 #endif

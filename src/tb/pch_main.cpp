@@ -91,9 +91,8 @@ int sc_main(int argc, char *argv[]) {
     sc_report_handler::set_actions (SC_WARNING, SC_DO_NOTHING);
 
     sc_trace_file *tracefile;
-#if !(GEM5)
     tracefile = sc_create_vcd_trace_file("pch_wave");
-#endif
+
     sc_trace(tracefile, clk, "clk");
     sc_trace(tracefile, rst, "rst");
     sc_trace(tracefile, RD, "RD");

@@ -8,7 +8,7 @@ echo "----------C = 32, R = 8, S = 16----------" >> ../scripts/kernels_hbm32bank
 sed -i "s/#define CORES_PER_PCH   1/#define CORES_PER_PCH   16/g" ../src/defs.h
 sed -i "s/#define BG_BITS         2/#define BG_BITS         3/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        14/#define ROW_BITS        13/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -41,7 +41,7 @@ sed -i "s/#define CORES_PER_PCH   16/#define CORES_PER_PCH   1/g" ../src/defs.h
 sed -i "s/#define BG_BITS         3/#define BG_BITS         2/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        13/#define ROW_BITS        14/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   5/#define GLOBAL_OFFSET   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 sed -i "s/{4<<10, 128, {0, 0, 8, 4, 1<<13, 1<<(5+2)}},/{4<<10, 128, {0, 0, 4, 4, 1<<14, 1<<(5+2)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h

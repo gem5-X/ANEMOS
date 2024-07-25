@@ -9,7 +9,7 @@ ${RAMULATOR_ROOT}/ramulator ${RAMULATOR_ROOT}/configs/HBM_AB-config.cfg --mode=d
 bin/ramulator2sc raw/$1.seq ramulator-out/$1.cmd SystemC/$1.sci 1
 
 cd ..
-Debug/pim-cores $1
+build/pim-cores $1
 cd inputs
 
 # ./decode_results results/$1.results

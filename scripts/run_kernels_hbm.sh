@@ -8,7 +8,7 @@ sed -i "s/configs\/HBM_AB-config.cfg/configs\/HBM2_AB-config.cfg/g" ../inputs/as
 echo "" > ../scripts/kernels_hbm.times
 echo "----------C = 32, R = 8, S = 16----------" >> ../scripts/kernels_hbm.times
 sed -i "s/#define CORES_PER_PCH   1/#define CORES_PER_PCH   8/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -53,7 +53,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_hbm.times
 # sed -i "s/#define ROW_BITS        14/#define ROW_BITS        15/g" ../src/defs.h
 # sed -i "s/#define SIMD_WIDTH		(256 \/ WORD_BITS)/#define SIMD_WIDTH		(128 \/ WORD_BITS)/g" ../src/defs.h
 # # sed -i "s/#define GLOBAL_OFFSET   6/#define GLOBAL_OFFSET   5/g" ../src/defs.h
-# cd ../Debug
+# cd ../build
 # make all
 # cd ../inputs
 # sed -i "s/{4<<10, 128, {0, 0, 4, 4, 1<<14, 1<<(5+2)}},/{4<<10, 128, {0, 0, 4, 4, 1<<15, 1<<(5+2)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h
@@ -87,7 +87,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_hbm.times
 # sed -i "s/#define ROW_BITS        15/#define ROW_BITS        13/g" ../src/defs.h
 # sed -i "s/#define SIMD_WIDTH		(128 \/ WORD_BITS)/#define SIMD_WIDTH		(512 \/ WORD_BITS)/g" ../src/defs.h
 # # sed -i "s/#define GLOBAL_OFFSET   6/#define GLOBAL_OFFSET   5/g" ../src/defs.h
-# cd ../Debug
+# cd ../build
 # make all
 # cd ../inputs
 # sed -i "s/{4<<10, 128, {0, 0, 4, 4, 1<<15, 1<<(5+2)}},/{4<<10, 128, {0, 0, 4, 4, 1<<13, 1<<(5+2)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h
@@ -121,7 +121,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_hbm.times
 # sed -i "s/#define ROW_BITS        13/#define ROW_BITS        12/g" ../src/defs.h
 # sed -i "s/#define SIMD_WIDTH		(512 \/ WORD_BITS)/#define SIMD_WIDTH		(1024 \/ WORD_BITS)/g" ../src/defs.h
 # # sed -i "s/#define GLOBAL_OFFSET   6/#define GLOBAL_OFFSET   5/g" ../src/defs.h
-# cd ../Debug
+# cd ../build
 # make all
 # cd ../inputs
 # sed -i "s/{4<<10, 128, {0, 0, 4, 4, 1<<13, 1<<(5+2)}},/{4<<10, 128, {0, 0, 4, 4, 1<<12, 1<<(5+2)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h
@@ -157,7 +157,7 @@ sed -i "s/#define CORES_PER_PCH   8/#define CORES_PER_PCH   1/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        12/#define ROW_BITS        14/g" ../src/defs.h
 sed -i "s/#define SIMD_WIDTH		(1024 \/ WORD_BITS)/#define SIMD_WIDTH		(256 \/ WORD_BITS)/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   5/#define GLOBAL_OFFSET   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 sed -i "s/{4<<10, 128, {0, 0, 4, 4, 1<<12, 1<<(5+2)}},/{4<<10, 128, {0, 0, 4, 4, 1<<14, 1<<(5+2)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h

@@ -14,7 +14,7 @@ sed -i "s/#define SRF_A_ENTRIES   8/#define SRF_A_ENTRIES   4/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   8/#define SRF_M_ENTRIES   4/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     8/#define GRF_ENTRIES     4/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   3/#define AAM_ADDR_BITS   2/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -45,7 +45,7 @@ sed -i "s/#define SRF_A_ENTRIES   4/#define SRF_A_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   4/#define SRF_M_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     4/#define GRF_ENTRIES     8/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   2/#define AAM_ADDR_BITS   3/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -76,7 +76,7 @@ sed -i "s/#define SRF_A_ENTRIES   8/#define SRF_A_ENTRIES   4/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   8/#define SRF_M_ENTRIES   4/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     8/#define GRF_ENTRIES     4/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   3/#define AAM_ADDR_BITS   2/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -107,7 +107,7 @@ sed -i "s/#define SRF_A_ENTRIES   4/#define SRF_A_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   4/#define SRF_M_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     4/#define GRF_ENTRIES     8/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   2/#define AAM_ADDR_BITS   3/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -138,7 +138,7 @@ sed -i "s/#define SRF_A_ENTRIES   8/#define SRF_A_ENTRIES   16/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   8/#define SRF_M_ENTRIES   16/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     8/#define GRF_ENTRIES     16/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   3/#define AAM_ADDR_BITS   4/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -169,7 +169,7 @@ sed -i "s/#define SRF_A_ENTRIES   16/#define SRF_A_ENTRIES   2/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   16/#define SRF_M_ENTRIES   2/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     16/#define GRF_ENTRIES     2/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   4/#define AAM_ADDR_BITS   1/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -200,7 +200,7 @@ sed -i "s/#define SRF_A_ENTRIES   2/#define SRF_A_ENTRIES   64/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   2/#define SRF_M_ENTRIES   64/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     2/#define GRF_ENTRIES     64/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   1/#define AAM_ADDR_BITS   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -231,7 +231,7 @@ sed -i "s/#define SRF_A_ENTRIES   64/#define SRF_A_ENTRIES   2/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   64/#define SRF_M_ENTRIES   2/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     64/#define GRF_ENTRIES     2/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   6/#define AAM_ADDR_BITS   1/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -262,7 +262,7 @@ sed -i "s/#define SRF_A_ENTRIES   2/#define SRF_A_ENTRIES   64/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   2/#define SRF_M_ENTRIES   64/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     2/#define GRF_ENTRIES     64/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   1/#define AAM_ADDR_BITS   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -293,7 +293,7 @@ sed -i "s/#define SRF_A_ENTRIES   64/#define SRF_A_ENTRIES   128/g" ../src/defs.
 sed -i "s/#define SRF_M_ENTRIES   64/#define SRF_M_ENTRIES   128/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     64/#define GRF_ENTRIES     128/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   6/#define AAM_ADDR_BITS   7/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -324,7 +324,7 @@ sed -i "s/#define SRF_A_ENTRIES   128/#define SRF_A_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   128/#define SRF_M_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     128/#define GRF_ENTRIES     8/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   7/#define AAM_ADDR_BITS   3/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -355,7 +355,7 @@ sed -i "s/#define SRF_A_ENTRIES   8/#define SRF_A_ENTRIES   16/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   8/#define SRF_M_ENTRIES   16/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     8/#define GRF_ENTRIES     16/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   3/#define AAM_ADDR_BITS   4/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -386,7 +386,7 @@ sed -i "s/#define SRF_A_ENTRIES   16/#define SRF_A_ENTRIES   32/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   16/#define SRF_M_ENTRIES   32/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     16/#define GRF_ENTRIES     32/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   4/#define AAM_ADDR_BITS   5/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -417,7 +417,7 @@ sed -i "s/#define SRF_A_ENTRIES   32/#define SRF_A_ENTRIES   32/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   32/#define SRF_M_ENTRIES   32/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     132/#define GRF_ENTRIES     32/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   5/#define AAM_ADDR_BITS   5/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -452,7 +452,7 @@ sed -i "s/#define SRF_A_ENTRIES   32/#define SRF_A_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define SRF_M_ENTRIES   32/#define SRF_M_ENTRIES   8/g" ../src/defs.h
 sed -i "s/#define GRF_ENTRIES     32/#define GRF_ENTRIES     8/g" ../src/defs.h
 sed -i "s/#define AAM_ADDR_BITS   5/#define AAM_ADDR_BITS   3/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh

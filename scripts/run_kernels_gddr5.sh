@@ -14,7 +14,7 @@ sed -i "s/#define DQ_BITS         64/#define DQ_BITS         32/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        14/#define ROW_BITS        14/g" ../src/defs.h
 sed -i "s/#define COL_BITS        5/#define COL_BITS        7/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   6/#define GLOBAL_OFFSET   4/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h
@@ -56,7 +56,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_gddr5.times
 # sed -i "s/#define CORES_PER_PCH   8/#define CORES_PER_PCH   4/g" ../src/defs.h
 # sed -i "s/#define SIMD_WIDTH		(64 \/ WORD_BITS)/#define SIMD_WIDTH		(128 \/ WORD_BITS)/g" ../src/defs.h
 # sed -i "s/#define ROW_BITS        14/#define ROW_BITS        13/g" ../src/defs.h
-# cd ../Debug
+# cd ../build
 # make all
 # cd ../inputs
 # sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<13, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h
@@ -89,7 +89,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_gddr5.times
 # sed -i "s/#define CORES_PER_PCH   4/#define CORES_PER_PCH   2/g" ../src/defs.h
 # sed -i "s/#define SIMD_WIDTH		(128 \/ WORD_BITS)/#define SIMD_WIDTH		(256 \/ WORD_BITS)/g" ../src/defs.h
 # sed -i "s/#define ROW_BITS        13/#define ROW_BITS        12/g" ../src/defs.h
-# cd ../Debug
+# cd ../build
 # make all
 # cd ../inputs
 # sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<13, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<12, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h
@@ -122,7 +122,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_gddr5.times
 # # sed -i "s/#define CORES_PER_PCH   2/#define CORES_PER_PCH   1/g" ../src/defs.h
 # # sed -i "s/#define SIMD_WIDTH		512 \/ WORD_BITS/#define SIMD_WIDTH		1024 \/ WORD_BITS/g" ../src/defs.h
 # # sed -i "s/#define COL_BITS        6/#define COL_BITS        5/g" ../src/defs.h
-# # cd ../Debug
+# # cd ../build
 # # make all
 # # cd ../inputs
 # # sed -i "s/{4<<10, 128, {0, 0, 4, 4, 1<<13, 1<<(6+3)}},/{4<<10, 128, {0, 0, 4, 4, 1<<13, 1<<(5+3)}},/g" $HOME/Documents/ramulator-AB/src/HBM_AB.h
@@ -155,7 +155,7 @@ sed -i "s/#define DQ_BITS         32/#define DQ_BITS         64/g" ../src/defs.h
 sed -i "s/#define COL_BITS        7/#define COL_BITS        5/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        14/#define ROW_BITS        14/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   4/#define GLOBAL_OFFSET   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 sed -i "s/{4<<10, 16, {0, 1, 4, 4, 1<<12, 1<<(7+3)}},/{4<<10, 16, {0, 1, 4, 4, 1<<14, 1<<(7+3)}},/g" $HOME/Documents/ramulator-AB/src/GDDR5_AB.h

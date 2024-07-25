@@ -10,7 +10,7 @@ make -C $HOME/Documents/ramulator-AB/ -j4
 echo "" >> ../scripts/kernels_datatypes.times
 echo "----------INT8, S = 32----------" >> ../scripts/kernels_datatypes.times
 sed -i "s/#define DATA_TYPE   0/#define DATA_TYPE   4/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -36,7 +36,7 @@ echo "CCWWR 11x11x34 -> 9x9x16" >> ../scripts/kernels_datatypes.times
 echo "" >> ../scripts/kernels_datatypes.times
 echo "----------INT16, S = 16----------" >> ../scripts/kernels_datatypes.times
 sed -i "s/#define DATA_TYPE   4/#define DATA_TYPE   5/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -62,7 +62,7 @@ echo "CCWWR 11x11x34 -> 9x9x16" >> ../scripts/kernels_datatypes.times
 echo "" >> ../scripts/kernels_datatypes.times
 echo "----------INT32, S = 8----------" >> ../scripts/kernels_datatypes.times
 sed -i "s/#define DATA_TYPE   5/#define DATA_TYPE   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -88,7 +88,7 @@ echo "CCWWR 11x11x34 -> 9x9x16" >> ../scripts/kernels_datatypes.times
 echo "" >> ../scripts/kernels_datatypes.times
 echo "----------INT64, S = 4----------" >> ../scripts/kernels_datatypes.times
 sed -i "s/#define DATA_TYPE   6/#define DATA_TYPE   7/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -114,7 +114,7 @@ echo "CCWWR 11x11x34 -> 9x9x16" >> ../scripts/kernels_datatypes.times
 echo "" >> ../scripts/kernels_datatypes.times
 echo "----------FP32, S = 8----------" >> ../scripts/kernels_datatypes.times
 sed -i "s/#define DATA_TYPE   7/#define DATA_TYPE   1/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -140,7 +140,7 @@ echo "CCWWR 11x11x34 -> 9x9x16" >> ../scripts/kernels_datatypes.times
 echo "" >> ../scripts/kernels_datatypes.times
 echo "----------FP64, S = 4----------" >> ../scripts/kernels_datatypes.times
 sed -i "s/#define DATA_TYPE   1/#define DATA_TYPE   2/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -171,7 +171,7 @@ sed -i "s/configs\/HBM2_AB-config.cfg/configs\/HBM_AB-config.cfg/g" ../inputs/as
 make -C $HOME/Documents/ramulator-AB/ -j4
 
 sed -i "s/#define DATA_TYPE   2/#define DATA_TYPE   0/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh

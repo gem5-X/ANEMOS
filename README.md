@@ -18,7 +18,7 @@ bash run_kernels_hbmCR.sh
 
 ## Project structure
 
-- 📁 [**Debug**:](./Debug/) build folder.
+- 📁 [**build**:](./build/) build folder.
 - 📁 [**eda_script**:](./eda_scripts/) TCL files for:
     - 📁 [**catapult**:](./eda_scripts/catapult/) high level synthesis of SystemC model using Catapult HLS. 
     - 📁 [**genus**:](./eda_scripts/genus/) synthesis and power estimation of RTL model using Cadence Genus. 

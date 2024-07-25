@@ -13,7 +13,7 @@ sed -i "s/#define SIMD_WIDTH      (256 \/ WORD_BITS)/#define SIMD_WIDTH      (64
 sed -i "s/#define ROW_BITS        14/#define ROW_BITS        15/g" ../src/defs.h
 sed -i "s/#define COL_BITS        5/#define COL_BITS        7/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   6/#define GLOBAL_OFFSET   4/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -55,7 +55,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_nvm.times
 echo "" >> ../scripts/kernels_nvm.times
 echo "---------- RRAM, C = 32, R = 8, S = 4----------" >> ../scripts/kernels_nvm.times
 sed -i "s/configs\/PCM_AB-config.cfg/configs\/RRAM_AB-config.cfg/g" ../inputs/assembly2sc.sh
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -97,7 +97,7 @@ echo "CCWWR 24x24x32 -> 20x20x32" >> ../scripts/kernels_nvm.times
 echo "" >> ../scripts/kernels_nvm.times
 echo "---------- STTRAM, C = 32, R = 8, S = 4----------" >> ../scripts/kernels_nvm.times
 sed -i "s/configs\/RRAM_AB-config.cfg/configs\/STTRAM_AB-config.cfg/g" ../inputs/assembly2sc.sh
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh
@@ -147,7 +147,7 @@ sed -i "s/#define SIMD_WIDTH      (64 \/ WORD_BITS)/#define SIMD_WIDTH      (256
 sed -i "s/#define COL_BITS        7/#define COL_BITS        5/g" ../src/defs.h
 sed -i "s/#define ROW_BITS        15/#define ROW_BITS        14/g" ../src/defs.h
 # sed -i "s/#define GLOBAL_OFFSET   4/#define GLOBAL_OFFSET   6/g" ../src/defs.h
-cd ../Debug
+cd ../build
 make all
 cd ../inputs
 ./compile_all.sh

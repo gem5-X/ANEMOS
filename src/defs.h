@@ -10,8 +10,8 @@
 #ifndef SRC_DEFS_H_
 #define SRC_DEFS_H_
 
-#define MIXED_SIM 0		// 0 if SystemC-only simulation, 1 if mixed SystemC + RTL
-#define GEM5	0
+#define MIXED_SIM   0   // 0 if SystemC-only simulation, 1 if mixed SystemC + RTL
+#define DEBUG       0
 
 #define CLK_PERIOD 3333
 #define RESOLUTION SC_PS
@@ -56,5 +56,10 @@
 
 // If not enough column bits to address CRF, using also bank bits
 #define CRF_BANK_ADDR   ((1 << COL_BITS) < CRF_ENTRIES)
+
+// Define to use or not assert library
+#if DEBUG == 0
+#define NDEBUG
+#endif
 
 #endif /* SRC_DEFS_H_ */

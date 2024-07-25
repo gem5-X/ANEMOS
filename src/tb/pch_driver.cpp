@@ -20,7 +20,8 @@ using namespace std;
 void pch_driver::driver_thread() {
 
 
-    int i, j, curCycle, DQCycle;
+    int i, j, DQCycle;
+    uint curCycle;
 #if INSTR_CLK > 1
     int instrCycle;
 #endif

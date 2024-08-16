@@ -1,6 +1,11 @@
 # CnM Framework
 Framework modeling Compute-near-Memory cores integrated in DRAM.
 
+The initial release is described in the following paper:
+>R. Medina et al.
+>"[**Bank on Compute-near-Memory: Design Space Exploration of Processing-near-Bank Architectures**](https://infoscience.epfl.ch/handle/20.500.14299/240684)".
+>In ESWEEK - CODES+ISSS, October 2024.
+
 ## Dependencies
 
 - [SystemC](https://github.com/accellera-official/systemc/tags) 2.3 build with C++11.

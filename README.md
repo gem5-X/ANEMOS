@@ -1,5 +1,5 @@
-# CnM Framework
-Framework modeling Compute-near-Memory cores integrated in DRAM.
+# ANEMOS
+ANEMOS is a Near-Memory Simulation framework to model Compute-near-Memory cores integrated in DRAM.
 
 The initial release is described in the following paper:
 >R. Medina et al.

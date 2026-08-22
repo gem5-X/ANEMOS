@@ -59,19 +59,6 @@ const std::map<std::string, uint8_t> STRING2INSTR = {
     { "EXEC", EXEC },
 };
 
-// // OPCODES operation identifiers
-// enum OPCODE_VALUES {
-//     OP_NOP = 0,
-//     OP_JUMP = 1,
-//     OP_EXIT = 2,
-//     OP_MOV = 4,
-//     OP_FILL = 5,
-//     OP_ADD = 8,
-//     OP_MUL = 9,
-//     OP_MAD = 10,
-//     OP_MAC = 11
-// };
-
 const std::map<uint8_t, uint8_t> INSTR2OPCODE = {
     { NOP, OP_NOP },
     { JUMP, OP_JUMP },
@@ -109,16 +96,6 @@ const std::map<std::string, uint8_t> STRING2STORE = {
     { "SRFM", SRFM }, { "SRFA", SRFA },
     { "EVEN_BANK", EVEN }, { "ODD_BANK", ODD  }
 };
-
-// // OPCODES storage identifiers
-// enum OPC_STORAGE {
-//     OPC_GRF_A = 0,
-//     OPC_GRF_B = 1,
-//     OPC_SRF_M = 2,
-//     OPC_SRF_A = 3,
-//     OPC_EVEN_BANK = 4,
-//     OPC_ODD_BANK = 5
-// };
 
 const std::map<string, uint8_t> STRING2OPCSTORAGE = {
     { "GRFA", OPC_GRF_A },
